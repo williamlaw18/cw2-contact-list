@@ -53,8 +53,6 @@ class ContactBook:
         new_contact.create_contact()
         self.__contact_list.append_contact(new_contact)
 
-    def __help(self): 
-        pass
 
     def __show_contact_list(self):
         self.__contact_list.get_contacts()
