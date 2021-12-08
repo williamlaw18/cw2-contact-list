@@ -1,6 +1,8 @@
 import json
+
 from classes import contact
 from classes import contact_list
+
 
 json_file = open('./data/contactList.json')
 
@@ -53,7 +55,7 @@ class ContactBook:
 
 
     def __show_contact_list(self):
-        print(self.__contact_list.get_contacts())
+      self.__contact_list.get_contacts()
 
 
 ContactBook(json_file)

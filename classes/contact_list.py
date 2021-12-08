@@ -13,9 +13,20 @@ class main:
     def __save_to_json(self):
             pass
 
+    def __sort_key(self, element):
+            return element.contacts['name'][0]
+
+
+
     def __sort_contacts(self):
-            print('Sorting contacts')
-            pass
+
+            '''
+            This method sorts the contact list into alphabetical order 
+            by using a key function (__sort_key) that returns the name of the contact and passing
+            this to the inbuilt python sort method. This will be run everytime a contact is added
+            '''
+            self.__contact_list.sort(key = self.__sort_key)
+
 
 # public methods
 
@@ -24,7 +35,7 @@ class main:
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
             for contact in self.__contact_list:
-                    print(contact)
+                    print(contact.contacts['name'].capitalize())
 
     def append_contact(self, contact):
             '''
@@ -32,7 +43,6 @@ class main:
             
             '''
             self.__contact_list.append(contact)
-            print("name", contact.contacts["name"])
             self.__sort_contacts()
 
             pass
@@ -59,8 +69,6 @@ class main:
             '''
             Allows user to delete a group
             '''
-
-
             pass
 
 

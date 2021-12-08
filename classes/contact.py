@@ -1,6 +1,4 @@
 import re 
-# importing regular expression library to confirm if entered email is a valid email address
-
 
 class main:
     def __init__(self):
@@ -19,14 +17,8 @@ class main:
         #phone regular expression from: https://regexr.com/3c53v
         self.__postcode_reg_ex = r"([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
         # Postcode reg exhttps://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/488478/Bulk_Data_Transfer_-_additional_validation_valid_from_12_November_2015.pdf
-        self.position = 0
     
 # Private Methods
-    def __find_position(self):
-        '''
-        finds the index of the alphebet which the first letter of the first name 
-        '''
-        pass
 
     def __add_contact_field (self, field_type):
         '''
@@ -40,15 +32,13 @@ class main:
        
 
         while True:
-            user_input = input('Enter: ' + prompt_title + ' ' )
+            user_input = input('Enter ' + prompt_title + ': ' )
             sanitised_input = self.__sanitise_field(user_input, field_type)
             validated = self.__check_field(sanitised_input, field_type)
-            if(validated):
-                print('Succefully added')
-                self.contacts[field_type] = sanitised_input
-                print(self.contacts)
-                break
 
+            if(validated):
+                self.contacts[field_type] = sanitised_input
+                break
 
         
     def __sanitise_field (self, user_input, field_type):
@@ -70,7 +60,6 @@ class main:
         match field_type:
             case 'email':
                 if(re.fullmatch(self.__email_reg_ex, user_input)):  
-                    print('he;;o')
                     return True
                 else:
                     print(user_input + ' Is not a valid email address')
@@ -91,6 +80,7 @@ class main:
                 return True
         pass
 
+
        
 
 # Public Methods
@@ -103,6 +93,9 @@ class main:
         self.__add_contact_field('address_2')
         self.__add_contact_field('postcode')
         self.__add_contact_field('email')
+
+        print(self.contacts['name'].capitalize() + ' Succesfully Added!')    
+
      
         
 
