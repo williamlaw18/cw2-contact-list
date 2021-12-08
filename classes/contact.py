@@ -12,12 +12,6 @@ class main:
             'postcode': '',
             'email' : '',
         }
-        self.name = ''
-        self.phone = ''
-        self.address_1 = ''
-        self.address_2 = ''
-        self.postcode = ''
-        self.email = ''
         self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
         self.__email_reg_ex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
         #email regular expression from: https://www.regexlib.com/Search.aspx?k=email&AspxAutoDetectCookieSupport=1

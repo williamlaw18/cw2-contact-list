@@ -32,9 +32,7 @@ class ContactBook:
               break
           else:
               print('Sorry, input not recognised ')
-            
-  
-      
+              
 
     def __show_menu(self): 
         '''
@@ -55,7 +53,7 @@ class ContactBook:
 
 
     def __show_contact_list(self):
-        self.__contact_list.get_contacts()
+        print(self.__contact_list.get_contacts())
 
 
 ContactBook(json_file)

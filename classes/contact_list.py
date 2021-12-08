@@ -23,6 +23,8 @@ class main:
             '''
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
+            for contact in self.__contact_list:
+                    print(contact)
 
     def append_contact(self, contact):
             '''
@@ -30,6 +32,7 @@ class main:
             
             '''
             self.__contact_list.append(contact)
+            print("name", contact.contacts["name"])
             self.__sort_contacts()
 
             pass
