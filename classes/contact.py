@@ -85,14 +85,9 @@ class main:
 
 # Public Methods
     def create_contact(self):
-
-# Add Name
-        self.__add_contact_field('name')
-        self.__add_contact_field('phone')
-        self.__add_contact_field('address_1')
-        self.__add_contact_field('address_2')
-        self.__add_contact_field('postcode')
-        self.__add_contact_field('email')
+        
+        for contact in self.contacts:
+            self.__add_contact_field(contact)
 
         print(self.contacts['name'].capitalize() + ' Succesfully Added!')    
 
