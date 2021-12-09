@@ -1,6 +1,5 @@
 import json
 
-
 class main:
     def __init__(self):
         self.__contact_list = []
@@ -54,7 +53,30 @@ class main:
             Provides functionality to search contact by various options 
             
             '''
-               
+            print("1. Name\n2. Phone\n3. Address Line 1\n4. Address Line 2\n5. Postcode\n6. Email")
+            search_attribute_input = input("Enter the number of the attribute you would like to search by: ")
+
+            match search_attribute_input:
+                    case "1":
+                            search_attribute = "name"
+                    case "2":
+                            search_attribute = "phone"
+                    case "3":
+                            search_attribute = "address_1"
+                    case "4":
+                            search_attribute = "address_2"
+                    case "5":
+                            search_attribute = "postcode"
+                    case "6":
+                            search_attribute = "email"
+
+            search_term = input("Enter the " + search_attribute + " you would like to search for: ")
+
+            sanitised_search_term = search_term.strip().lower()
+
+            for contact in self.__contact_list:
+                   if contact.contacts[search_attribute] == sanitised_search_term:
+                           print(contact.contacts)
 
     def delete_contact(self, contact):
             '''
