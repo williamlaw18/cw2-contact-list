@@ -4,12 +4,11 @@ from classes import contact
 from classes import contact_list
 
 
-json_file = open('./data/contactList.json')
 
 class ContactBook:
-    def __init__(self, json_file):
-       self.__json_file = json_file
-       self.__contact_list = contact_list.main(json_file)
+    def __init__(self):
+       self.__contact_list = contact_list.main()
+       self.__read_from_json()
        self.__run_program_loop()
        
     def __run_program_loop(self):
@@ -19,6 +18,7 @@ class ContactBook:
       an if/else statement that will run the particular methods chosen by the user
       
       '''
+
       while True:
           print('Enter the number of the feature you want, or press 1 to see the menu')
           user_input = input()
@@ -52,11 +52,22 @@ class ContactBook:
         new_contact = contact.main()
         new_contact.create_contact()
         self.__contact_list.append_contact(new_contact)
-        
+
+     
+    def __read_from_json(self):
+            print('hello from this sexy method')
+            with open("./data/contactList.json", "r") as jsonPath:
+                    jsonFile = json.load(jsonPath)
+                    for json_contact in jsonFile:
+                        new_contact = contact.main()
+                        new_contact.create_contact_from_json(json_contact['name'],json_contact['phone'],json_contact['address_1'], json_contact['address_2'], json_contact['postcode'], json_contact['email'])
+                        self.__contact_list.append_contact(new_contact)
+
+                        
 
 
     def __show_contact_list(self):
       self.__contact_list.get_contacts()
 
 
-ContactBook(json_file)
+ContactBook()

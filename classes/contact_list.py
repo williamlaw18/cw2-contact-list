@@ -1,8 +1,10 @@
+import json
+
+
 class main:
-    def __init__(self, json_file):
+    def __init__(self):
         self.__contact_list = []
         self.__groups = []
-        self.__json_file = json_file
 
 
 # private methods
@@ -65,11 +67,16 @@ class main:
             Allows user to create a group, should this be a class??
             '''
         
+	
     def delete_group(self, group):
             '''
             Allows user to delete a group
             '''
             pass
+
+
+
+
 
 
         

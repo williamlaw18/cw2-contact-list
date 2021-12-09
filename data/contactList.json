@@ -1,1 +1,18 @@
-{ "name": "John", "age": 30, "car": null }
+[
+  {
+    "name": "harrt",
+    "phone": "0999238484",
+    "address_1": "hhdhd",
+    "address_2": "hhd",
+    "postcode": "ox28 3tz",
+    "email": "hooo@hhh.com"
+  },
+  {
+    "name": "Adam",
+    "phone": "09992384843",
+    "address_1": "hhdhd33",
+    "address_2": "hhd",
+    "postcode": "ox28 3tz",
+    "email": "hooo@hhh.com"
+  }
+]
