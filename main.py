@@ -29,7 +29,9 @@ class ContactBook:
               self.__create_contact()
           elif(user_input == '3'):
               self.__show_contact_list()
-          elif(user_input == '4'):
+          elif(user_input == "4"):
+              self.__search_contact_list()
+          elif(user_input == '5'):
               print('quiting program')
               break
           else:
@@ -40,11 +42,10 @@ class ContactBook:
         '''
         This method doesn't take any arguments, it just shows the menu as a printed string
         '''
-        print('1. Menu 2. Create Contact 3.Show Contacts 4. Quit')
+        print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Quit')
        
 
     def __create_contact(self):
-
         '''
         This method instansiates a contact class, runs the create contact method on it,
         and appends the contact to the contact_list instance
@@ -64,7 +65,8 @@ class ContactBook:
                         self.__contact_list.append_contact(new_contact)
 
                         
-
+    def __search_contact_list(self):
+        self.__contact_list.search()
 
     def __show_contact_list(self):
       self.__contact_list.get_contacts()
