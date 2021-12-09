@@ -17,6 +17,8 @@ class main:
         #phone regular expression from: https://regexr.com/3c53v
         self.__postcode_reg_ex = r"([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
         # Postcode reg exhttps://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/488478/Bulk_Data_Transfer_-_additional_validation_valid_from_12_November_2015.pdf
+
+        self.create_contact_json('poo', 'willy', '69', 'fortnite')
     
 # Private Methods
 
@@ -89,7 +91,10 @@ class main:
         for contact in self.contacts:
             self.__add_contact_field(contact)
 
-        print(self.contacts['name'].capitalize() + ' Succesfully Added!')    
+        print(self.contacts['name'].capitalize() + ' Succesfully Added!') 
+
+
+
 
      
         

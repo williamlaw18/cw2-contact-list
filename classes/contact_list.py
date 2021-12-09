@@ -35,7 +35,7 @@ class main:
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
             for contact in self.__contact_list:
-                    print(contact.contacts['name'].capitalize())
+                    print(contact.contacts)
 
     def append_contact(self, contact):
             '''

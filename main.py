@@ -52,6 +52,7 @@ class ContactBook:
         new_contact = contact.main()
         new_contact.create_contact()
         self.__contact_list.append_contact(new_contact)
+        
 
 
     def __show_contact_list(self):
