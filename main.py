@@ -60,7 +60,7 @@ class ContactBook:
                     jsonFile = json.load(jsonPath)
                     for json_contact in jsonFile:
                         new_contact = contact.main()
-                        new_contact.create_contact_from_json(json_contact['name'],json_contact['phone'],json_contact['address_1'], json_contact['address_2'], json_contact['postcode'], json_contact['email'])
+                        new_contact.create_contact_from_json(json_contact)
                         self.__contact_list.append_contact(new_contact)
 
                         

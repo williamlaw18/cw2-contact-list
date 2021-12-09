@@ -91,14 +91,9 @@ class main:
 
         print(self.contacts['name'].capitalize() + ' Succesfully Added!') 
 
-    def create_contact_from_json(self, name, phone, address_1, address_2, postcode, email):
-        self.contacts['name'] = name
-        self.contacts['phone']= phone
-        self.contacts['address_1'] = address_1
-        self.contacts['address_2'] = address_2
-        self.contacts['postcode'] = postcode
-        self.contacts['email'] = email
-       
+    def create_contact_from_json(self, json_dict):
+        for key in json_dict:
+            self.contacts[key] = json_dict[key]
 
 
 
