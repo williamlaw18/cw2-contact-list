@@ -15,7 +15,7 @@ class main:
             pass
 
     def __sort_key(self, element):
-            return element.contacts['name'][0]
+            return element.contact_details['name'][0]
 
 
 
@@ -36,7 +36,7 @@ class main:
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
             for contact in self.__contact_list:
-                    print(contact.contacts)
+                    print(contact.contact_details)
 
     def append_contact(self, contact):
             '''
@@ -53,6 +53,7 @@ class main:
             Provides functionality to search contact by various options 
             
             '''
+            results = []
             print("1. Name\n2. Phone\n3. Address Line 1\n4. Address Line 2\n5. Postcode\n6. Email")
             search_attribute_input = input("Enter the number of the attribute you would like to search by: ")
 
@@ -75,8 +76,21 @@ class main:
             sanitised_search_term = search_term.strip().lower()
 
             for contact in self.__contact_list:
-                   if contact.contacts[search_attribute] == sanitised_search_term:
-                           print(contact.contacts)
+                   if contact.contact_details[search_attribute] == sanitised_search_term:
+                           results.append(contact.contact_details)
+                           
+            for i,result in enumerate(results):
+
+                    print("----------Contact: " + str(i+1) + "----------")
+                    for detail in result:
+                            detail_title = ' '.join(detail.split('_')).capitalize()
+                            print(detail_title + ': ' + result[detail])
+                    print("\n--------------------------------")
+
+            contact_selection = ("Enter the number of contact would you like to select: ")
+
+
+            
 
     def delete_contact(self, contact):
             '''
