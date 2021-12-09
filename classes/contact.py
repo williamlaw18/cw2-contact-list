@@ -96,6 +96,9 @@ class main:
         for key in json_dict:
             self.contact_details[key] = json_dict[key]
 
+    def edit_contact():
+        print('Select the number of the field you want to edit:\n1: Name \n2: Phone \n3: Address Line 1 \n4 Address Line 2 \n5 Postcode \n  ')
+
 
 
 
