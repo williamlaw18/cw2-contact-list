@@ -15,7 +15,7 @@ class main:
             pass
 
     def __sort_key(self, element):
-            return element.contacts['name'][0]
+            return element.contact_details['name'][0]
 
 
 
@@ -36,7 +36,7 @@ class main:
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
             for contact in self.__contact_list:
-                    print(contact.contacts)
+                    print(contact.contact_details)
 
     def append_contact(self, contact):
             '''

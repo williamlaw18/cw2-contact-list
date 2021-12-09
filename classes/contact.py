@@ -2,7 +2,7 @@ import re
 
 class main:
     def __init__(self):
-        self.contacts = {
+        self.contact_details = {
             'name': '',
             'phone': '',
             'address_1': '',
@@ -37,7 +37,7 @@ class main:
             validated = self.__check_field(sanitised_input, field_type)
 
             if(validated):
-                self.contacts[field_type] = sanitised_input
+                self.contact_details[field_type] = sanitised_input
                 break
 
         
@@ -86,15 +86,15 @@ class main:
 # Public Methods
     def create_contact(self):
         
-        for contact in self.contacts:
+        for contact in self.contact_details:
             self.__add_contact_field(contact)
 
-        print(self.contacts['name'].capitalize() + ' Succesfully Added!') 
+        print(self.contact_details['name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict):
         #uses a loop to pass params into method based on key strings
         for key in json_dict:
-            self.contacts[key] = json_dict[key]
+            self.contact_details[key] = json_dict[key]
 
 
 
