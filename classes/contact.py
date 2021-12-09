@@ -92,6 +92,7 @@ class main:
         print(self.contacts['name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict):
+        #uses a loop to pass params into method based on key strings
         for key in json_dict:
             self.contacts[key] = json_dict[key]
 
