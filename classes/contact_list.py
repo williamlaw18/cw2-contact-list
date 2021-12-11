@@ -17,8 +17,6 @@ class main:
     def __sort_key(self, element):
             return element.contact_details['name'][0]
 
-
-
     def __sort_contacts(self):
 
             '''
@@ -35,18 +33,26 @@ class main:
             '''
             Prints contacts, allows you to be able to select contact to run the edit method on
             '''
-            for contact in self.__contact_list:
-                    print(contact.contact_details)
+            if len(self.__contact_list) == 0:
+                print ('No Contacts Found')
+            else:
+                print("Enter the number of the contact you want to view/edit")    
+                for i,contact in enumerate(self.__contact_list):
+                        print(f'{i + 1}: {contact.contact_details["name"]}')
+                user_input = int(input()) - 1
+                chosen_contact = self.__contact_list[user_input]
+                chosen_contact.display_user()
+
+
 
     def append_contact(self, contact):
             '''
             This appends a contact to the list, and then runs the sort method
+            WILL, are you adding the save to JSON functionality here?
             
             '''
             self.__contact_list.append(contact)
             self.__sort_contacts()
-
-            pass
 
     def search(self):
             '''
@@ -88,20 +94,92 @@ class main:
                     print("\n--------------------------------")
 
             contact_selection = ("Enter the number of contact would you like to select: ")
-
-
             
 
     def delete_contact(self, contact):
             '''
             Deletes Contact
             '''
+    
+    def show_groups(self):
+
+            '''
+            This Method displays a list of groups, If no groups exist, It will offer up the functionality to 
+            create a new one.
+            
+            '''
+
+            print('Groups:')
+            if len(self.__groups) == 0:
+                    print('No Groups found')
+            else:
+               for i,group in enumerate(self.__groups):
+                       print(f'{i+1}: {group.name}')
+
+            print('Enter the number of the group you want to view, or enter A to add a new group')
+
+            while True:
+                    user_input = input().lower()
+                    if user_input == 'a':
+                            self.add_group()
+                            break
+                    else:
+                       selected_group_index = int(user_input) - 1
+                       if selected_group_index < len(self.__groups):
+                               selected_group = self.__groups[selected_group_index]
+                               selected_group.get_contacts()
+                               break
+                       else:
+                               print('input not recognised, try again')
 
 
-    def add_group(self, group_name):
+    def add_to_group(self, contact):
+
+        print('Do you want to add this contact to a group? Y or N')
+        while True:
+                user_input = input().lower() 
+                if user_input == 'y':
+                        if len(self.__groups) == 0:
+                                print('No groups found, press A to add a group, or any other key to exit')
+                                user_input = input().lower()
+                                if user_input == 'a':
+                                        new_group = self.add_group()
+                                        new_group.append_contact(contact)
+                                        print(f'{contact.contact_details["name"]} succesfully added to {new_group.name}')
+                                else:
+                                        return
+                        else:
+                                print('Enter the number of the group you would like to add to')
+                                for i,group in enumerate(self.__groups):
+                                        print(f'{i+1}: {group.name} \n {group.group_description}') 
+                                while True:
+                                        user_input = int(input()) - 1
+                                        if user_input < len(self.__groups):
+                                                selected_group = self.__groups[user_input]
+                                                selected_group.append_contact(contact)
+                                                break
+                                        else:
+                                                print('input not recognised')        
+
+                            
+                        break
+                elif user_input == 'n':
+                            print('Contact Succesfully created')
+                            break
+
+           
+
+                       
+
+
+    def add_group(self):
             '''
-            Allows user to create a group, should this be a class??
+            Allows user to create a group
             '''
+            new_group = group()
+            new_group.create_group()
+            self.__groups.append(new_group)
+            return new_group
         
 	
     def delete_group(self, group):
@@ -112,7 +190,27 @@ class main:
 
 
 
-
-
-
         
+class group(main):
+
+        '''
+        This is the group class that extends the contact list class, this allows us to keep the
+        features of being able to delete, remove and show the list of contacts
+        '''
+        def __init__(self):
+          super().__init__()
+          self.name = ''
+          self.group_description = ''
+
+        def create_group(self):
+              group_name = input('Please enter group name: ').strip().lower()
+              group_description = input('Enter group description: ')
+              self.name = group_name
+              self.group_description = group_description
+
+              
+              
+
+
+
+

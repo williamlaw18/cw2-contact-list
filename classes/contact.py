@@ -10,6 +10,9 @@ class main:
             'postcode': '',
             'email' : '',
         }
+
+        # initialise group name to be empty.
+        self.group_name = None
         self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
         self.__email_reg_ex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
         #email regular expression from: https://www.regexlib.com/Search.aspx?k=email&AspxAutoDetectCookieSupport=1
@@ -99,6 +102,10 @@ class main:
     def edit_contact():
         print('Select the number of the field you want to edit:\n1: Name \n2: Phone \n3: Address Line 1 \n4 Address Line 2 \n5 Postcode \n  ')
 
+    def display_user(self):
+        for detail in self.contact_details:
+            detail_title = ' '.join(detail.split('_')).capitalize()
+            print(detail_title + ': ' + self.contact_details[detail])
 
 
 
