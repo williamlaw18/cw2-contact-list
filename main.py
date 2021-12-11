@@ -54,7 +54,7 @@ class ContactBook:
         '''
         new_contact = contact.main()
         new_contact.create_contact()
-        self.__contact_list.add_to_group(new_contact)
+        self.__contact_list.add_to_group_functionality(new_contact)
         self.__contact_list.append_contact(new_contact)
 
      

@@ -105,7 +105,6 @@ class main:
 		create a new one.
             
 		'''
-
 		print('Groups:')
 		if len(self.groups) == 0:
 			print('No Groups found')
@@ -131,40 +130,64 @@ class main:
 
 
 	def add_to_group_functionality(self, contact):
-
 		print('Do you want to add this contact to a group? Y or N')
 		while True:
 			user_input = input().lower() 
 			if user_input == 'y':
 				if len(self.groups) == 0:
 					print('No groups found, press A to add a group, or any other key to exit')
-					user_input = input().lower()
-					if user_input == 'a':
-						new_group = self.add_group()
-						new_group.append_contact(contact)
-						print(f'{contact.contact_details["name"]} succesfully added to {new_group.name}')
-					else:
-						return
+					self.__create_group_and_append_contact(contact)	
+					break		
 				else:
-					print('Enter the number of the group you would like to add to')
-					for i,group in enumerate(self.groups):
-						print(f'{i+1}: {group.name} \n {group.group_description}') 
-					while True:
-						user_input = int(input()) - 1
-						if user_input < len(self.groups):
-							selected_group = self.groups[user_input]
-							selected_group.append_contact(contact)
-							print(f'{contact.contact_details["name"]} added to {selected_group.name}')
-							break
-						else:
-							print('input not recognised')             
-							break
+					self.__add_to_existing_group(contact)
+					break
 			elif user_input == 'n':
 				print('Contact Succesfully created')
 				break
-                   
 
-        
+	def __create_group_and_append_contact(self,contact):
+		'''
+		Adds functionality to add to a group if no groups exist yet
+		'''
+	
+		user_input = input().lower()
+		if user_input == 'a':
+			new_group = self.add_group()
+			new_group.append_contact(contact)
+			print(f'{contact.contact_details["name"]} succesfully added to {new_group.name}')
+		else:
+			return
+
+	def __add_to_existing_group(self, contact):
+
+		'''
+		Adds functionality to add to an existing group
+		'''
+
+		print('Enter the number of the group you would like to add to, or press A to add to new group')
+		for i,group in enumerate(self.groups):
+			print(f'{i+1}: {group.name} \n {group.group_description}') 
+		while True:
+
+			user_input = input()
+
+			if user_input.lower() == 'a':
+				self.__create_group_and_append_contact(contact)
+			else:
+				try: 
+					user_selected_index = int(user_input) - 1	
+					if user_selected_index < len(self.groups):
+						selected_group = self.groups[user_selected_index]
+						selected_group.append_contact(contact)
+						print(f'{contact.contact_details["name"]} added to {selected_group.name}')
+						break
+					else:
+						print('input not recognised')             
+						break
+				except:
+					print('Please Enter a Valid Number')	
+
+
 	def add_group(self):
 		'''
 		Allows user to create a group
