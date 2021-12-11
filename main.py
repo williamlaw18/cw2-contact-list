@@ -7,7 +7,7 @@ from classes import contact_list
 
 class ContactBook:
     def __init__(self):
-       self.__contact_list = contact_list.main()
+       self.__contact_list = contact_list.Main()
        self.__read_from_json()
        self.__run_program_loop()
        
@@ -52,7 +52,7 @@ class ContactBook:
         This method instansiates a contact class, runs the create contact method on it,
         and appends the contact to the contact_list instance
         '''
-        new_contact = contact.main()
+        new_contact = contact.Main()
         new_contact.create_contact()
         self.__contact_list.add_to_group_functionality(new_contact)
         self.__contact_list.append_contact(new_contact)
@@ -63,7 +63,7 @@ class ContactBook:
             with open("./data/contactList.json", "r") as jsonPath:
                     jsonFile = json.load(jsonPath)
                     for json_contact in jsonFile:
-                        new_contact = contact.main()
+                        new_contact = contact.Main()
                         new_contact.create_contact_from_json(json_contact)
                         self.__contact_list.append_contact(new_contact)
                     jsonPath.close()    

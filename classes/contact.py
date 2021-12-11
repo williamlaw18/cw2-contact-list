@@ -1,6 +1,6 @@
 import re 
 
-class main:
+class Main:
     def __init__(self):
         self.contact_details = {
             'name': '',

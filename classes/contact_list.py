@@ -1,15 +1,9 @@
 import json
 
-class main:
+class Main:
 	def __init__(self):
 		self.contact_list = []
 		self.groups = []
-
-	def __import_from_json(self):
-		pass
-
-	def __save_to_json(self):
-		pass
 
 	def __sort_key(self, element):
 		return element.contact_details['name'][0]
@@ -192,7 +186,7 @@ class main:
 		'''
 		Allows user to create a group
 		'''
-		new_group = group()
+		new_group = Group()
 		new_group.create_group()
 		self.groups.append(new_group)
 		return new_group
@@ -203,11 +197,8 @@ class main:
             Allows user to delete a group
             '''
             pass
-
-
-
-        
-class group(main):
+      
+class Group(Main):
 
 	'''
 	This is the group class that extends the contact list class, this allows us to keep the
