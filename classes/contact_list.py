@@ -166,10 +166,7 @@ class main:
                 elif user_input == 'n':
                             print('Contact Succesfully created')
                             break
-
-           
-
-                       
+                   
 
 
     def add_group(self):
