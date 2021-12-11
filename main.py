@@ -44,7 +44,7 @@ class ContactBook:
         '''
         This method doesn't take any arguments, it just shows the menu as a printed string
         '''
-        print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6 Exit')
+        print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Exit')
        
 
     def __create_contact(self):
@@ -76,4 +76,7 @@ class ContactBook:
       self.__contact_list.get_contacts()
 
 
-ContactBook()
+
+
+if __name__ == '__main__':
+    ContactBook()
