@@ -32,6 +32,8 @@ class ContactBook:
           elif(user_input == "4"):
               self.__search_contact_list()
           elif(user_input == '5'):
+              self.__contact_list.show_groups()
+          elif(user_input == '6'):
               print('quiting program')
               break
           else:
@@ -42,7 +44,7 @@ class ContactBook:
         '''
         This method doesn't take any arguments, it just shows the menu as a printed string
         '''
-        print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Quit')
+        print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6 Exit')
        
 
     def __create_contact(self):
@@ -52,17 +54,19 @@ class ContactBook:
         '''
         new_contact = contact.main()
         new_contact.create_contact()
+        self.__contact_list.add_to_group(new_contact)
         self.__contact_list.append_contact(new_contact)
 
      
     def __read_from_json(self):
-            print('hello from this sexy method')
+           
             with open("./data/contactList.json", "r") as jsonPath:
                     jsonFile = json.load(jsonPath)
                     for json_contact in jsonFile:
                         new_contact = contact.main()
                         new_contact.create_contact_from_json(json_contact)
                         self.__contact_list.append_contact(new_contact)
+                    jsonPath.close()    
 
                         
     def __search_contact_list(self):
