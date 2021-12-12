@@ -1,5 +1,5 @@
 import re 
-import constant
+import constants.constant as constant
 import webbrowser
 
 class Contact:
@@ -80,6 +80,8 @@ class Contact:
                 return True
         pass
        
+    def __create_email_link(self):
+        pass
 
 #-------------------------- Public Methods --------------------------------
 
@@ -128,8 +130,6 @@ class Contact:
             return
 
 
-    def __create_email_link(self):
-        pass
 
 
 
