@@ -1,26 +1,52 @@
 [
   {
-    "name": "harry",
-    "phone": "0999238484",
-    "address_1": "hhdhd",
-    "address_2": "hhd",
-    "postcode": "ox28 3tz",
-    "email": "hooo@hhh.com"
-  },
-  {
-    "name": "Adam",
-    "phone": "09992384843",
-    "address_1": "hhdhd33",
-    "address_2": "hhd",
-    "postcode": "ox28 3tz",
-    "email": "hooo@hhh.com"
-  },
-  {
-    "name": "harry",
-    "phone": "0999238484",
-    "address_1": "hhdhd",
-    "address_2": "hhd",
-    "postcode": "ox28 3tz",
-    "email": "hooo@hhh.com"
+    "contacts": [
+      {
+        "name": "harry",
+        "phone": "0999238484",
+        "address_1": "hhdhd",
+        "address_2": "hhd",
+        "postcode": "ox28 3tz",
+        "email": "hooo@hhh.com",
+        "group_id": "group-1234e43"
+      },
+      {
+        "name": "Adam",
+        "phone": "09992384843",
+        "address_1": "hhdhd33",
+        "address_2": "hhd",
+        "postcode": "ox28 3tz",
+        "email": "hooo@hhh.com",
+        "group_id": "group-1234e46"
+      },
+      {
+        "name": "harry",
+        "phone": "0999238484",
+        "address_1": "hhdhd",
+        "address_2": "hhd",
+        "postcode": "ox28 3tz",
+        "email": "hooo@hhh.com",
+        "group_id": "group-1234e47"
+      }
+    ],
+    "groups": [
+      {
+        "group_id": "group-1234e43",
+        "group_name": "Friends",
+        "group_description": "Group of close friends"
+      },
+
+      {
+        "group_id": "group-1234e46",
+        "group_name": "Work",
+        "group_description": "Work Contacts"
+      },
+
+      {
+        "group_id": "group-1234e47",
+        "group_name": "Family",
+        "group_description": "Family contacts"
+      }
+    ]
   }
 ]

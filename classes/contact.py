@@ -1,27 +1,23 @@
 import re 
+import constant
 
-class Main:
+class Contact:
     def __init__(self):
-        self.contact_details = {
-            'name': '',
-            'phone': '',
-            'address_1': '',
-            'address_2': '',
-            'postcode': '',
-            'email' : '',
+        self.__contact_details = {
+            'name': None,
+            'phone': None,
+            'address_1': None,
+            'address_2': None,
+            'postcode': None,
+            'email' : None,
         }
 
-        # initialise group name to be empty.
-        self.group_name = None
-        self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
-        self.__email_reg_ex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-        #email regular expression from: https://www.regexlib.com/Search.aspx?k=email&AspxAutoDetectCookieSupport=1
-        self.__phone_reg_ex = r"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
-        #phone regular expression from: https://regexr.com/3c53v
-        self.__postcode_reg_ex = r"([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
-        # Postcode reg exhttps://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/488478/Bulk_Data_Transfer_-_additional_validation_valid_from_12_November_2015.pdf
-    
-# Private Methods
+        # initialise group ID to be empty.
+        self.__group_id = None
+        self.__group_name = None
+
+ 
+#-------------------------- Private Methods --------------------------------
 
     def __add_contact_field (self, field_type):
         '''
@@ -40,7 +36,7 @@ class Main:
             validated = self.__check_field(sanitised_input, field_type)
 
             if(validated):
-                self.contact_details[field_type] = sanitised_input
+                self.__contact_details[field_type] = sanitised_input
                 break
 
         
@@ -62,19 +58,19 @@ class Main:
 
         match field_type:
             case 'email':
-                if(re.fullmatch(self.__email_reg_ex, user_input)):  
+                if(re.fullmatch(constant.EMAIL_REG_EX, user_input)):  
                     return True
                 else:
                     print(user_input + ' Is not a valid email address')
                     return False
             case 'phone':
-                if(re.fullmatch(self.__phone_reg_ex, user_input)):
+                if(re.fullmatch(constant.PHONE_REG_EX, user_input)):
                     return True
                 else:
                     print(user_input + ' Is not a valid phone number ')
                     return False
             case 'postcode':
-                if(re.fullmatch(self.__postcode_reg_ex, user_input)):
+                if(re.fullmatch(constant.POSTCODE_REG_EX, user_input)):
                     return True
                 else:
                     print(user_input + ' Is not a valid postcode')
@@ -82,30 +78,44 @@ class Main:
             case _: 
                 return True
         pass
-
-
        
 
-# Public Methods
+#-------------------------- Public Methods --------------------------------
+
     def create_contact(self):
         
-        for contact in self.contact_details:
+        for contact in self.__contact_details:
             self.__add_contact_field(contact)
 
-        print(self.contact_details['name'].capitalize() + ' Succesfully Added!') 
+        print(self.__contact_details['name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict):
         #uses a loop to pass params into method based on key strings
         for key in json_dict:
-            self.contact_details[key] = json_dict[key]
+            if key == 'group_id':
+                self.__group_id = json_dict[key]
+            else:
+                self.__contact_details[key] = json_dict[key]
 
     def edit_contact():
         print('Select the number of the field you want to edit:\n1: Name \n2: Phone \n3: Address Line 1 \n4 Address Line 2 \n5 Postcode \n  ')
 
     def display_user(self):
-        for detail in self.contact_details:
+        for detail in self.__contact_details:
             detail_title = ' '.join(detail.split('_')).capitalize()
-            print(detail_title + ': ' + self.contact_details[detail])
+            print(detail_title + ': ' + self.__contact_details[detail])
+
+
+#-------------------------- Getters and Setters --------------------------------
+
+    def get_group_id(self):
+        return self.__group_id
+
+    def get_group_name(self):
+        return self.__group_name 
+
+    def get_contact_details(self):
+        return self.__contact_details        
 
 
 
