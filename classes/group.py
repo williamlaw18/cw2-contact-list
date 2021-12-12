@@ -3,7 +3,7 @@ import uuid
 
 '''
 
-This file contains the 'Group' Class. This is an exention of the ListBase class
+This file contains the 'Group' Class. This is an extenstion of the ListBase class
 with added fields and functionality that relates to dealing with Groups.
 the module uuid is imported to create unique ids to be able to link groups to contacts
 when groups and contacts are imported from json.
