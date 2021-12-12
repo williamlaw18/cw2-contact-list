@@ -58,6 +58,11 @@ class ContactBook:
         self.__contact_list.append_contact(new_contact)
 
     def __adding_to_group_options(self, contact):
+
+        '''
+        When called from the __create_contact method, this allows the user to choose if they want to add the new 
+        contact to a group, if they press 'Y' then the __add_to_groups method is called
+        '''
         print(f'Enter Y to add {contact.get_contact_details()["name"]} to a group, or any other key to continue')
         user_input = input()
         if(user_input.lower() == 'y'):
@@ -67,6 +72,14 @@ class ContactBook:
 
 
     def __add_to_groups(self, contact):
+
+        '''
+        This method starts by calling the list_groups method on our contact list class. This just displays all groups
+        It gives the option for the user to either create and add their contact to a new group, or by choosing a number,
+        add to an existing one.         
+        
+        '''
+
         group_list = self.__contact_list.list_groups()
         print('Select the number of the group you want to add to, or press A to create a new group')
         while True:
@@ -91,7 +104,9 @@ class ContactBook:
     def __show_groups(self):
 
         '''
-        This method lists out all the groups
+        This method is called directly from the menu, it lists all the groups, and gives the option to either add
+        a new group (by calling create_group_from_user_imput) or viewing the contents of an existing one by selecting
+        a number
         
         '''
         group_list = self.__contact_list.list_groups()
@@ -114,24 +129,31 @@ class ContactBook:
 
 
     def __read_from_json(self):
-           
-            with open("./data/contactList.json", "r") as jsonPath:
-                    jsonFile = json.load(jsonPath)
-                    imported_group_list = jsonFile[0]['groups']
-                    imported_contact_list = jsonFile[0]['contacts']
 
-                    for json_group in imported_group_list:
-                        imported_group = Group()
-                        imported_group.create_group_from_json(json_group)
-                        self.__contact_list.append_groups(imported_group)
+        '''
+        This method opens our contactList.json file, using the imported json library, it
+        parses an array from the file, which contains two dictionaries: groups and conttacts
+        from these, using the create_group_from_json method and the create_contact_from_json method
+        these classes are instansiated and stored in the correct place.
+        '''
+           
+        with open("./data/contactList.json", "r") as jsonPath:
+            jsonFile = json.load(jsonPath)
+            imported_group_list = jsonFile[0]['groups']
+            imported_contact_list = jsonFile[0]['contacts']
+
+            for json_group in imported_group_list:
+                imported_group = Group()
+                imported_group.create_group_from_json(json_group)
+                self.__contact_list.append_groups(imported_group)
                     
-                    for json_contact in imported_contact_list:
-                        imported_contact = Contact()
-                        imported_contact.create_contact_from_json(json_contact)
-                        self.__contact_list.append_contact(imported_contact)
-                        for existing_group in self.__contact_list.get_groups():
-                            existing_group.append_contact_from_json(imported_contact)
-                    jsonPath.close()    
+            for json_contact in imported_contact_list:
+                imported_contact = Contact()
+                imported_contact.create_contact_from_json(json_contact)
+                self.__contact_list.append_contact(imported_contact)
+                for existing_group in self.__contact_list.get_groups():
+                    existing_group.append_contact_from_json(imported_contact)
+            jsonPath.close()    
 
                         
     def __search_contact_list(self):

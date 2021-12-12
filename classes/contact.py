@@ -83,13 +83,18 @@ class Contact:
 #-------------------------- Public Methods --------------------------------
 
     def create_contact(self):
+        '''
+        In order to create a new contact, this runs through the __contact_details dictionary
+        and runs the __add_contact_field method. this allows for validation of user input
+        '''
         
-        for contact in self.__contact_details:
-            self.__add_contact_field(contact)
+        for contact_detail in self.__contact_details:
+            self.__add_contact_field(contact_detail)
 
         print(self.__contact_details['name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict):
+
         #uses a loop to pass params into method based on key strings
         for key in json_dict:
             if key == 'group_id':
@@ -99,8 +104,15 @@ class Contact:
 
     def edit_contact():
         print('Select the number of the field you want to edit:\n1: Name \n2: Phone \n3: Address Line 1 \n4 Address Line 2 \n5 Postcode \n  ')
+        '''
+        this needs to be made
+        '''
 
     def display_user(self):
+        '''
+        This method displays all the user details. The join, split and capitalise methods are run on the detail key.
+        This turns somthing like address_1 into Address 1 for readability in the print statement.
+        '''
         for detail in self.__contact_details:
             detail_title = ' '.join(detail.split('_')).capitalize()
             print(detail_title + ': ' + self.__contact_details[detail])
