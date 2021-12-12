@@ -1,5 +1,6 @@
 import re 
 import constant
+import webbrowser
 
 class Contact:
     def __init__(self):
@@ -116,6 +117,20 @@ class Contact:
         for detail in self.__contact_details:
             detail_title = ' '.join(detail.split('_')).capitalize()
             print(detail_title + ': ' + self.__contact_details[detail])
+        
+        print('press 1 to email, or any other charicter to go back to main menu:')
+        user_input = input()
+
+        if user_input == '1':
+            print('opening browswer')
+            self.__create_email_link()
+        else:
+            return
+
+
+    def __create_email_link(self):
+        pass
+
 
 
 #-------------------------- Getters and Setters --------------------------------
