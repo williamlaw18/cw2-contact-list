@@ -15,15 +15,22 @@ class ContactList(ListBase):
 
 #-------------------------- Private Methods --------------------------------
 
+#Empty for now
+
 #-------------------------- Public Methods --------------------------------
 
 	def append_groups(self, group):
+		'''
+		this method simply allows external classes to append a group to it's group list
+		'''
 		self.__groups.append(group)
 
 	def list_groups(self):
 
 		'''
-		This Method displays a list of groups
+		this method prints out the self.__groups field (the list of groups we have)
+		and returns the list, so that items can be accessed on it from outside this 
+		class.
             
 		'''
 		print('Groups:')
