@@ -3,7 +3,7 @@ import uuid
 
 '''
 
-This file contains the 'Group' Class. This is an exention of the ListBase class
+This file contains the 'Group' Class. This is an extenstion of the ListBase class
 with added fields and functionality that relates to dealing with Groups.
 the module uuid is imported to create unique ids to be able to link groups to contacts
 when groups and contacts are imported from json.
@@ -82,4 +82,63 @@ class Group(ListBase):
 		print(f'--------- {self.group_name} --------- \n {self.group_description}' )
 		self.display_contacts()
 
-#-------------------------- Getters And Setters --------------------------------
+#-------------------------- Static Methods --------------------------------
+
+	@staticmethod
+	def static_add_to_group(contact, contact_list):
+		
+		'''
+		When called from the __create_contact method, this allows the user to choose if they want to add the new 
+		contact to a group, if they press 'Y' then the __add_to_groups method is called
+		'''
+		print(f'Enter Y to add {contact.get_contact_details()["name"]} to a group, or any other key to continue')
+		user_input = input()
+		if(user_input.lower() == 'y'):
+			
+			group_list = contact_list.list_groups()
+			print('Select the number of the group you want to add to, or press A to create a new group')
+			while True:
+				try:
+					user_input = input()
+					if user_input.lower() == 'a':
+						new_group = Group()
+						new_group.create_group_from_user_imput()
+						new_group.append_contact(contact)
+						contact_list.append_groups(new_group)
+						break
+					else:
+						user_selection = int(user_input) - 1
+						group_list[user_selection].append_contact(contact)
+						print('Succesfully added to group')
+						break
+				except:
+					print('Input not recognised') 
+
+		else:
+			return 
+
+	@staticmethod
+	def static_display_and_add_groups(contact_list):
+		'''
+		This method is called directly from the menu, it lists all the groups, and gives the option to either add
+		a new group (by calling create_group_from_user_imput) or viewing the contents of an existing one by selecting
+		a number
+		
+		'''
+		group_list = contact_list.list_groups()
+		print('Enter the number of the group you would like to view, or press A to add a new one')
+		while True:
+			try:
+				user_input = input()
+				if user_input.lower() == 'a':
+					new_group = Group()
+					new_group.create_group_from_user_imput()
+					contact_list.append_groups(new_group)
+					break
+				else:
+					user_selection = int(user_input) - 1
+					group_list[user_selection].display_group()
+					#Perhaps I could add the ability to loop through contacts and choose to add to this group
+					break
+			except:
+				print('input not recognised')
