@@ -1,3 +1,4 @@
+from os import O_TRUNC
 import re 
 import constants.constant as constant
 import webbrowser
@@ -142,7 +143,12 @@ class Contact:
         return self.__group_name 
 
     def get_contact_details(self):
-        return self.__contact_details        
+        return self.__contact_details      
+
+    def set_group_id(self, id):
+        self.__group_id = id
+       
+
 
 
 
