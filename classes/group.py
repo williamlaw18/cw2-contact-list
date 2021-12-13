@@ -57,7 +57,7 @@ class Group(ListBase):
 			self.append_contact(contact)
 
 
-	def create_group_from_user_imput(self):
+	def create_group_from_user_input(self):
 
 		'''
 		Pretty much self explanitory. takes inputs from user and passes it to the __create_group method
@@ -112,7 +112,7 @@ class Group(ListBase):
 					user_input = input()
 					if user_input.lower() == 'a':
 						new_group = Group()
-						new_group.create_group_from_user_imput()
+						new_group.create_group_from_user_input()
 						new_group.append_contact(contact)
 						contact_list.append_groups(new_group)
 						break
@@ -131,7 +131,7 @@ class Group(ListBase):
 	def static_display_and_add_groups(contact_list):
 		'''
 		This method is called directly from the menu, it lists all the groups, and gives the option to either add
-		a new group (by calling create_group_from_user_imput) or viewing the contents of an existing one by selecting
+		a new group (by calling create_group_from_user_input) or viewing the contents of an existing one by selecting
 		a number
 		
 		'''
@@ -142,7 +142,7 @@ class Group(ListBase):
 				user_input = input()
 				if user_input.lower() == 'a':
 					new_group = Group()
-					new_group.create_group_from_user_imput()
+					new_group.create_group_from_user_input()
 					contact_list.append_groups(new_group)
 					break
 				else:
