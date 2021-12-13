@@ -1,4 +1,3 @@
-from os import O_TRUNC
 import re 
 import constants.constant as constant
 import webbrowser
