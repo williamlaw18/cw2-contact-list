@@ -14,9 +14,9 @@ class Group(ListBase):
 
 	def __init__(self):
 		super().__init__()
-		self.group_name = None
-		self.group_description = None
-		self.group_id = None
+		self.__group_name = None
+		self.__group_description = None
+		self.__group_id = None
 
 
 
@@ -33,13 +33,13 @@ class Group(ListBase):
 		
 		'''
 
-		self.group_name = group_name
-		self.group_description = group_description
+		self.__group_name = group_name
+		self.__group_description = group_description
 
 		if group_id == None:
-			self.group_id = 'group' + str(uuid.uuid4())
+			self.__group_id = 'group' + str(uuid.uuid4())
 		else:
-			self.group_id = group_id	
+			self.__group_id = group_id	
 
 
 
@@ -53,7 +53,7 @@ class Group(ListBase):
 		the group id, the contact is appended to the list using the append_contact method from the parent class.
 		'''
 
-		if contact.get_group_id() == self.group_id:
+		if contact.get_group_id() == self.__group_id:
 			self.append_contact(contact)
 
 
@@ -79,8 +79,18 @@ class Group(ListBase):
 		Prints out the list of contacts in the group by calling the display_contacts method on the parent class
 		'''
 
-		print(f'--------- {self.group_name} --------- \n {self.group_description}' )
+		print(f'--------- {self.__group_name} --------- \n {self.__group_description}' )
 		self.display_contacts()
+
+
+#-------------------------- Getters --------------------------------
+
+	def get_group_name(self):
+		return self.__group_name
+	def get_group_id(self):
+		return self.__group_id
+	def get_group_description(self):
+		return self.__group_description
 
 #-------------------------- Static Methods --------------------------------
 
