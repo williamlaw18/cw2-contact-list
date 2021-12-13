@@ -81,7 +81,7 @@ class Contact:
         pass
        
     def __create_email_link(self):
-        pass
+        webbrowser.open("mailto: " + self.__contact_details['email'])
 
 #-------------------------- Public Methods --------------------------------
 
