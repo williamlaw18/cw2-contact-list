@@ -99,7 +99,7 @@ class Group(ListBase):
 		
 		'''
 		When called from the __create_contact method, this allows the user to choose if they want to add the new 
-		contact to a group, if they press 'Y' then the __add_to_groups method is called
+		contact to a group.
 		'''
 		print(f'Enter Y to add {contact.get_contact_details()["name"]} to a group, or any other key to continue')
 		user_input = input()
@@ -113,11 +113,14 @@ class Group(ListBase):
 					if user_input.lower() == 'a':
 						new_group = Group()
 						new_group.create_group_from_user_input()
+						contact.set_group_id(new_group.get_group_id())
 						new_group.append_contact(contact)
 						contact_list.append_groups(new_group)
 						break
 					else:
 						user_selection = int(user_input) - 1
+						selected_group = group_list[user_selection]
+						contact.set_group_id(selected_group.get_group_id())
 						group_list[user_selection].append_contact(contact)
 						print('Succesfully added to group')
 						break
