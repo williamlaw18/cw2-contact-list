@@ -38,7 +38,7 @@ class ContactList(ListBase):
 			print('No Groups found')
 		else:
 			for i,group in enumerate(self.__groups):
-				print(f'{i+1}: {group.group_name}')
+				print(f'{i+1}: {group.get_group_name()}')
 
 		return self.__groups	
       

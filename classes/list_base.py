@@ -51,7 +51,7 @@ class ListBase:
 					else:
 						user_selection = int(user_input) -1
 						chosen_contact = self.contact_list[user_selection]
-						chosen_contact.display_user()
+						chosen_contact.display_contact()
 						break
 				except:
 					print('input not recognised')
@@ -109,6 +109,4 @@ class ListBase:
 		Deletes Contact
 		'''
       
-#-------------------------- Getters and Setters --------------------------------
-	def get_groups(self):
-		return self.__groups()
+

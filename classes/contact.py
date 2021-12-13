@@ -111,7 +111,7 @@ class Contact:
         this needs to be made
         '''
 
-    def display_user(self):
+    def display_contact(self):
         '''
         This method displays all the user details. The join, split and capitalise methods are run on the detail key.
         This turns somthing like address_1 into Address 1 for readability in the print statement.
