@@ -1,6 +1,8 @@
+
 import re 
 import constants.constant as constant
 import webbrowser
+import helper_methods.helper as helper
 
 class Contact:
     def __init__(self):
@@ -13,9 +15,13 @@ class Contact:
             'email' : None,
         }
 
+
         # initialise group ID to be empty.
         self.__group_id = None
         self.__group_name = None
+
+        # amount of times contacted:
+        self.__contacted_counter = 0
 
  
 #-------------------------- Private Methods --------------------------------
@@ -28,12 +34,12 @@ class Contact:
         as a prompt in the input call
         '''
 
-        prompt_title = ' '.join(field_type.split('_')).capitalize()
-       
+        prompt_title = helper.format_title(field_type)
+
 
         while True:
             user_input = input('Enter ' + prompt_title + ': ' )
-            sanitised_input = self.__sanitise_field(user_input, field_type)
+            sanitised_input = helper.strip_lowercase(user_input)
             validated = self.__check_field(sanitised_input, field_type)
 
             if(validated):
@@ -41,15 +47,7 @@ class Contact:
                 break
 
         
-    def __sanitise_field (self, user_input, field_type):
-       '''
-       User input here is trimmed of white space before and after, it is also converted to
-       lowercase to ease comparison during search
-       
-       '''
-       sanitised_user_input = user_input.strip().lower()
-
-       return sanitised_user_input
+ 
 
     def __check_field (self, user_input, field_type):
 
@@ -82,6 +80,8 @@ class Contact:
        
     def __create_email_link(self):
         webbrowser.open("mailto: " + self.__contact_details['email'])
+        self.__contacted_counter += 1
+        print(self.__contacted_counter)
 
 #-------------------------- Public Methods --------------------------------
 
@@ -105,11 +105,32 @@ class Contact:
             else:
                 self.__contact_details[key] = json_dict[key]
 
-    def edit_contact():
-        print('Select the number of the field you want to edit:\n1: Name \n2: Phone \n3: Address Line 1 \n4 Address Line 2 \n5 Postcode \n  ')
-        '''
-        this needs to be made
-        '''
+    def edit_contact(self):
+        print('Enter the number of the field you want to edit, press Y when done')
+
+        old_name = helper.format_values(self.__contact_details['name'], 'name')
+
+        for i, detail in enumerate(self.__contact_details):
+            print(i+1, helper.format_title(detail))
+        while True:
+            user_input = input()
+            if user_input.lower() == 'y':
+                print('Finished Editing')  
+                break  
+            else:
+                try:
+                    keys = list(self.__contact_details.keys())
+                    user_selection = int(user_input) - 1
+                    selected_attribute = keys[user_selection]
+                    self.__add_contact_field(selected_attribute)
+                    changed_value = helper.format_values(self.__contact_details[selected_attribute], selected_attribute)
+                    print(f"{old_name}'s {helper.format_title(selected_attribute).lower()} succesfully changed to: {changed_value}.")
+                    print("Select the attribute you want to change to carry on editing, or press Y to exit")
+
+                except:
+                    print('Sorry, input not recognised')
+
+
 
     def display_contact(self):
         '''
@@ -117,17 +138,25 @@ class Contact:
         This turns somthing like address_1 into Address 1 for readability in the print statement.
         '''
         for detail in self.__contact_details:
-            detail_title = ' '.join(detail.split('_')).capitalize()
-            print(detail_title + ': ' + self.__contact_details[detail])
+            detail_title = helper.format_title(detail)
+            contact_detail = helper.format_values(self.__contact_details[detail], detail)
+            print(detail_title + ': ' + contact_detail)
         
-        print('press 1 to email, or any other charicter to go back to main menu:')
+        print('press 1 to email, 2 to edit or any other charicter to go back to main menu:')
         user_input = input()
 
-        if user_input == '1':
-            print('opening browswer')
-            self.__create_email_link()
-        else:
-            return
+        match user_input:
+            case '1':
+                self.__create_email_link()
+                return
+            case '2':
+                self.edit_contact()
+                return
+            case _:
+                return
+
+
+     
 
 
 
@@ -142,10 +171,16 @@ class Contact:
         return self.__group_name 
 
     def get_contact_details(self):
-        return self.__contact_details      
+        return self.__contact_details  
+
+    def get_contact_name(self):
+        return self.__contact_details['name']        
 
     def set_group_id(self, id):
         self.__group_id = id
+
+    def get_contacted_counter(self):
+        return self.__contacted_counter    
        
 
 
