@@ -103,7 +103,7 @@ class Group(ListBase):
 		contact to a group.
 		'''
 
-		contact_name = helper.format_values(contact.get_name(), 'name')
+		contact_name = helper.format_values(contact.get_contact_name(), 'name')
 		print(f'Enter Y to add {contact_name} to a group, or any other key to continue')
 		user_input = input()
 		if(user_input.lower() == 'y'):
