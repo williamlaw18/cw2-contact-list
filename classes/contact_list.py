@@ -45,3 +45,6 @@ class ContactList(ListBase):
 #-------------------------- Getters and Setters --------------------------------
 	def get_groups(self):
 		return self.__groups
+
+	def get_contacts(self):
+		return self.contact_list

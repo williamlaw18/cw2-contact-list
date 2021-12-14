@@ -2,12 +2,15 @@ import json
 from classes.contact import Contact
 from classes.group import Group
 from classes.contact_list import ContactList
+from classes.favorites import Favorites
 
 class ContactBook:
 	def __init__(self):
 		self.__contact_list = ContactList()
+		self.__favorite_list = Favorites()
 		self.__read_from_json()
 		self.__run_program_loop()
+				
 	   
 	def __run_program_loop(self):
 	
@@ -33,10 +36,15 @@ class ContactBook:
 				case '5':
 					self.__show_groups()
 				case '6':
+					self.__show_favorites()	
+				case '7':
 					print('Quiting program, Goodbye!')
 					break
 				case _:
 					print('Sorry, input not recognised ')
+			
+			self.__loop_reset_logic()
+		
 
 
 	def __show_menu(self): 
@@ -44,7 +52,7 @@ class ContactBook:
 		'''
 		This method doesn't take any arguments, it just shows the menu as a printed string
 		'''
-		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Exit')
+		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Show Favorites\n7. Quit')
 	   
 
 	def __create_contact(self):
@@ -94,11 +102,15 @@ class ContactBook:
 						
 	def __search_contact_list(self):
 		self.__contact_list.search()
-
 	def __show_contact_list(self):
-	  self.__contact_list.display_contacts()
+		self.__contact_list.display_contacts()
 
-
+	def __show_favorites(self):
+		print('Your Favorites:')
+		self.__favorite_list.display_contacts()
+	
+	def __loop_reset_logic(self):
+		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
 
 
 if __name__ == '__main__':

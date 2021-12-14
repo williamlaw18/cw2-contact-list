@@ -1,4 +1,5 @@
 import json
+import helper_methods.helper as helper
 
 '''
 This acts as a parent class for our two types of lists. We have a ContactList which acts as our main storage of
@@ -16,7 +17,7 @@ class ListBase:
 #-------------------------- Private Methods --------------------------------
 
 	def __sort_key(self, element):
-		return element.get_contact_details()['name'][0]
+		return element.get_contact_name()[0]
 
 	def __sort_contacts(self):
 
@@ -40,10 +41,11 @@ class ListBase:
 		else:
             
 			for i,contact in enumerate(self.contact_list):
-				print(f'{i + 1}: {contact.get_contact_details()["name"]}')
+				contact_name = helper.format_values(contact.get_contact_name(), 'name')
+				print(f'{i + 1}: {contact_name}')
 			print("Enter the number of the contact you want to view/edit, or press s to search ")    
 			while True:
-				try:
+				# try:
 					user_input = input()
 					if(user_input.lower() == 's'):
 						self.search()
@@ -53,7 +55,7 @@ class ListBase:
 						chosen_contact = self.contact_list[user_selection]
 						chosen_contact.display_contact()
 						break
-				except:
+				# except:
 					print('input not recognised')
             
             

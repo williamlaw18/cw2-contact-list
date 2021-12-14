@@ -1,4 +1,5 @@
 from classes.list_base import ListBase
+import helper_methods.helper as helper
 import uuid
 
 '''
@@ -101,7 +102,9 @@ class Group(ListBase):
 		When called from the __create_contact method, this allows the user to choose if they want to add the new 
 		contact to a group.
 		'''
-		print(f'Enter Y to add {contact.get_contact_details()["name"]} to a group, or any other key to continue')
+
+		contact_name = helper.format_values(contact.get_name(), 'name')
+		print(f'Enter Y to add {contact_name} to a group, or any other key to continue')
 		user_input = input()
 		if(user_input.lower() == 'y'):
 			
