@@ -71,7 +71,6 @@ class ContactBook:
 		Group.static_display_and_add_groups(self.__contact_list)
 		
 
-
 	def __read_from_json(self):
 
 		'''
