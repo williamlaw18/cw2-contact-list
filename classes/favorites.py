@@ -10,9 +10,9 @@ class Favorites(ListBase):
     def __sort_contact_key(self, element):
         return element.get_contacted_counter()
     def __sort_contacts(self):
-        '''
-        This methods sorts contacts by how many times they have been contacted 
-        '''
+        
+        #This methods sorts contacts by how many times they have been contacted 
+        
         self.contact_list.sort(key = self.__sort_contact_key)
 
     def add_to_favorites(self, contact):
