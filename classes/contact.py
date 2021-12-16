@@ -7,12 +7,14 @@ import helper_methods.helper as helper
 class Contact:
     def __init__(self):
         self.__contact_details = {
-            'name': None,
+            'first_name': None,
+            'second_name': None,
             'phone': None,
-            'address_1': None,
-            'address_2': None,
-            'postcode': None,
             'email' : None,
+            'house_name_or_number': None,
+            'address_line_1': None,
+            'address_line_2': None,
+            'postcode': None,
         }
 
 
@@ -94,7 +96,7 @@ class Contact:
         for contact_detail in self.__contact_details:
             self.__add_contact_field(contact_detail)
 
-        print(self.__contact_details['name'].capitalize() + ' Succesfully Added!') 
+        print(self.__contact_details['first_name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict):
 
@@ -108,7 +110,7 @@ class Contact:
     def edit_contact(self):
         print('Enter the number of the field you want to edit, press Y when done')
 
-        old_name = helper.format_values(self.__contact_details['name'], 'name')
+        old_name = helper.format_values(self.__contact_details['first_name'], 'name')
 
         for i, detail in enumerate(self.__contact_details):
             print(i+1, helper.format_title(detail))
@@ -169,7 +171,7 @@ class Contact:
         return self.__contact_details  
 
     def get_contact_name(self):
-        return self.__contact_details['name']        
+        return self.__contact_details['first_name']        
 
     def set_group_id(self, id):
         self.__group_id = id
