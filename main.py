@@ -75,7 +75,7 @@ class ContactBook:
 
 		'''
 		This method opens our contactList.json file, using the imported json library, it
-		parses an array from the file, which contains two dictionaries: groups and conttacts
+		parses a list from the file, which contains two dictionaries: groups and conttacts
 		from these, using the create_group_from_json method and the create_contact_from_json method
 		these classes are instansiated and stored in the correct place.
 		'''
