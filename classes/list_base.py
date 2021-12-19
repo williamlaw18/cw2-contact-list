@@ -66,44 +66,75 @@ class ListBase:
 
 	def search(self):
 		'''
-		Provides functionality to search contact by various options 
-            
+		Provides functionality to search contact by various options   
 		'''
 		results = []
-		print("1. Name\n2. Phone\n3. Address Line 1\n4. Address Line 2\n5. Postcode\n6. Email")
+		#print and user input to display options that the search functionailty provides
+		print("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. House Name or Number\n6. Address Line 1\n7. Address Line 2\n8. Postcode")
 		search_attribute_input = input("Enter the number of the attribute you would like to search by: ")
-
+		'''
+		this statement converts the user friendly input (numbers) into the "search attributes" that
+		are required to interact with the list imported from the json file that contain
+		the contacts in the contact book
+		it also assigns variable to output to the user that looks more user friendly
+		'''
 		match search_attribute_input:
 			case "1":
-				search_attribute = "name"
+				search_attribute = "first_name"
+				UXattribute = "first name"
 			case "2":
-				search_attribute = "phone"
+				search_attribute = "last name"
+				UXattribute = ""
 			case "3":
-				search_attribute = "address_1"
+				search_attribute = "phone"
+				UXattribute = "phone number"
 			case "4":
-				search_attribute = "address_2"
-			case "5":
-				search_attribute = "postcode"
-			case "6":
 				search_attribute = "email"
+				UXattribute = "email"
+			case "5":
+				search_attribute = "house_name_or_number"
+				UXattribute = "house name or number"
+			case "6":
+				search_attribute = "address_line_1"
+				UXattribute = "address line 1"
+			case "7":
+				search_attribute = "address_line_2"
+				UXattribute = "address line 2"
+			case "8":
+				search_attribute = "postcode"
+				UXattribute = "postcode"
 
-		search_term = input("Enter the " + search_attribute + " you would like to search for: ")
+		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
+		search_term = input("Enter the " + UXattribute + " you would like to search for: ")
 
 		sanitised_search_term = search_term.strip().lower()
-
+		'''
+		this block of code iterates to search for each contact in the contact book
+		it checks to see if the search query is a substring of the current name and then
+		adds it to a list
+		'''
 		for contact in self.contact_list:
-			if contact.get_contact_details()[search_attribute] == sanitised_search_term:
-				results.append(contact.get_contact_details())
-                           
-				for i,result in enumerate(results):
+			if sanitised_search_term in contact.get_contact_details()[search_attribute]:  
+				results.append(contact.get_contact_details())   
+				print(results)   
+				'''
+				This code iterates for each contact that was found that contains the substring
+				it outputs alongside an identifier from 1 to n amount of contacts
+				along with the rest of the details about the contact using the format: Attribute: *attribute value*
+				each contact is surrounded by a series of dashes to make contacts more readabe when more than one
+				is returned
+				'''
+		for i,result in enumerate(results):
+			print("\n----------Contact: " + str(i+1) + "----------\n")
+			for detail in result:
+				detail_title = ' '.join(detail.split('_')).capitalize()
+				print(detail_title + ': ' + result[detail])
+			print("\n--------------------------------\n")
 
-					print("----------Contact: " + str(i+1) + "----------")
-					for detail in result:
-						detail_title = ' '.join(detail.split('_')).capitalize()
-						print(detail_title + ': ' + result[detail])
-					print("\n--------------------------------")
+		contact_selection = int(input("Enter the number of contact would you like to select: "))
+		return results[contact_selection - 1] #returning the result of the search to be used in a higher order function
+		
 
-				contact_selection = ("Enter the number of contact would you like to select: ")
             
 
 	def delete_contact(self, contact):
