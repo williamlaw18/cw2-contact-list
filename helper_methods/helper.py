@@ -1,3 +1,5 @@
+import json
+
 def format_title(text):
     return ' '.join(text.split('_')).capitalize()
 
@@ -12,3 +14,7 @@ def format_values(text, type):
             return text
         case _:
             return text.title()
+
+def toJSON(object):
+    return json.dumps(object, default=lambda o: o.__dict__, 
+        sort_keys=False, indent=4)

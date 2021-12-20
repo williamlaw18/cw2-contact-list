@@ -1,4 +1,5 @@
 import json
+import helper_methods.helper as helper
 from classes.contact import Contact
 from classes.group import Group
 from classes.contact_list import ContactList
@@ -63,9 +64,13 @@ class ContactBook:
 		'''
 		new_contact = Contact()
 		new_contact.create_contact()
-		Group.static_add_to_group(new_contact, self.__contact_list)
-		self.__contact_list.append_contact(new_contact)
 
+		Group.static_add_to_group(new_contact, self.__contact_list)
+		self.__contact_list.append_contact(new_contact)	
+		
+		json_object = helper.toJSON(self.__contact_list.get_contacts())
+		with open("./data/temp.json", "w") as file:
+			file.write(json_object)
 
 	def __show_groups(self):
 		Group.static_display_and_add_groups(self.__contact_list)
