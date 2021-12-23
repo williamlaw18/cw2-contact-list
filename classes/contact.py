@@ -83,7 +83,12 @@ class Contact:
     def __create_email_link(self):
         webbrowser.open("mailto: " + self.__contact_details['email'])
         self.__contacted_counter += 1
-        print(self.__contacted_counter)
+        print("This contact has been contacted " + str(self.__contacted_counter) + " times.")
+
+    def __create_tel_link(self):
+        webbrowser.open("tel: " + self.__contact_details['phone'])
+        self.__contacted_counter += 1
+        print("This contact has been contacted " + str(self.__contacted_counter) + " times.")
 
 #-------------------------- Public Methods --------------------------------
 
@@ -144,7 +149,7 @@ class Contact:
             contact_detail = helper.format_values(self.__contact_details[detail], detail)
             print(detail_title + ': ' + contact_detail)
         
-        print('press 1 to email, 2 to edit or any other charicter to go back to main menu:')
+        print('press 1 to email, press 2 to phone, 3 to edit or any other charicter to go back to main menu:')
         user_input = input()
 
         match user_input:
@@ -152,6 +157,9 @@ class Contact:
                 self.__create_email_link()
                 return
             case '2':
+                self.__create_tel_link()
+                return
+            case '3':
                 self.edit_contact()
                 return
             case _:
