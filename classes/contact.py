@@ -118,7 +118,7 @@ class Contact:
         old_name = helper.format_values(self.__contact_details['first_name'], 'name')
 
         for i, detail in enumerate(self.__contact_details):
-            print(i+1, helper.format_title(detail))
+            print(i+1, helper.format_title(detail, True))
         while True:
             user_input = input()
             if user_input.lower() == 'y':
@@ -131,7 +131,7 @@ class Contact:
                     selected_attribute = keys[user_selection]
                     self.__add_contact_field(selected_attribute)
                     changed_value = helper.format_values(self.__contact_details[selected_attribute], selected_attribute)
-                    print(f"{old_name}'s {helper.format_title(selected_attribute).lower()} succesfully changed to: {changed_value}.")
+                    print(f"{old_name}'s {helper.format_title(selected_attribute)} succesfully changed to: {changed_value}.")
                     print("Select the attribute you want to change to carry on editing, or press Y to exit")
 
                 except:
@@ -145,7 +145,7 @@ class Contact:
         This turns somthing like address_1 into Address 1 for readability in the print statement.
         '''
         for detail in self.__contact_details:
-            detail_title = helper.format_title(detail)
+            detail_title = helper.format_title(detail, True)
             contact_detail = helper.format_values(self.__contact_details[detail], detail)
             print(detail_title + ': ' + contact_detail)
         
