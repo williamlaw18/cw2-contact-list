@@ -1,5 +1,8 @@
-def format_title(text):
-    return ' '.join(text.split('_')).capitalize()
+def format_title(text, capitalised = False):
+
+    if(capitalised):
+        return ' '.join(text.split('_')).capitalize()
+    return ' '.join(text.split('_'))
 
 def strip_lowercase(text):
     return text.strip().lower()
