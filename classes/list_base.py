@@ -1,5 +1,6 @@
 import json
 import helper_methods.helper as helper
+import string
 
 '''
 This acts as a parent class for our two types of lists. We have a ContactList which acts as our main storage of
@@ -12,12 +13,24 @@ the ability to append a contact onto itself and also a search functionality.
 class ListBase:
 	def __init__(self):
 		self.contact_list = []
+		self.sort_by_indetifier = 'second_name'
 
 
 #-------------------------- Private Methods --------------------------------
 
 	def __sort_key(self, element):
-		return element.get_contact_name()[0]
+		'''
+		This method stores the first letter of the field value of what we want to sort by in 
+		contact_field_value and returns the index of the alphebet of that particular letter,
+		to be used in the search method
+	
+		'''
+	
+
+		contact_field_value = element.get_contact_details()[self.sort_by_indetifier][0]
+		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
+		
+		return contact_field_string_index 
 
 	def __sort_contacts(self):
 
@@ -27,6 +40,7 @@ class ListBase:
 		this to the inbuilt python sort method. This will be run everytime a contact is added
 		'''
 		self.contact_list.sort(key = self.__sort_key)
+		print('sorting')
 
 
 
@@ -82,7 +96,7 @@ class ListBase:
 			case "1":
 				search_attribute = "first_name"
 			case "2":
-				search_attribute = "last name"
+				search_attribute = "second_name"
 			case "3":
 				search_attribute = "phone"
 			case "4":
@@ -97,7 +111,7 @@ class ListBase:
 				search_attribute = "postcode"
 
 		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
-		UXattribute = helper.format_title(search_attribute).lower()
+		UXattribute = helper.format_title(search_attribute)
 		search_term = input("Enter the " + UXattribute + " you would like to search for: ")
 
 		sanitised_search_term = search_term.strip().lower()
@@ -120,7 +134,7 @@ class ListBase:
 		for i,result in enumerate(results):
 			print("\n----------Contact: " + str(i+1) + "----------\n")
 			for detail in result:
-				detail_title = ' '.join(detail.split('_')).capitalize()
+				detail_title = helper.format_title(detail, True)
 				print(detail_title + ': ' + result[detail])
 			print("\n--------------------------------\n")
 
