@@ -13,7 +13,7 @@ the ability to append a contact onto itself and also a search functionality.
 class ListBase:
 	def __init__(self):
 		self.contact_list = []
-		self.sort_by_indetifier = 'second_name'
+		self.sort_by_identifier = 'second_name'
 
 
 #-------------------------- Private Methods --------------------------------
@@ -27,7 +27,7 @@ class ListBase:
 		'''
 	
 
-		contact_field_value = element.get_contact_details()[self.sort_by_indetifier][0]
+		contact_field_value = element.get_contact_details()[self.sort_by_identifier][0]
 		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
 		
 		return contact_field_string_index 
@@ -84,32 +84,45 @@ class ListBase:
 		Provides functionality to search contact by various options   
 		'''
 		results = []
-		#print and user input to display options that the search functionailty provides
-		print("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. House Name or Number\n6. Address Line 1\n7. Address Line 2\n8. Postcode")
-		search_attribute_input = input("Enter the number of the attribute you would like to search by: ")
-		'''
-		this statement converts the user friendly input (numbers) into the "search attributes" that
-		are required to interact with the list imported from the json file that contain
-		the contacts in the contact book
-		it also assigns variable to output to the user that looks more user friendly
-		'''
-		match search_attribute_input:
-			case "1":
-				search_attribute = "first_name"
-			case "2":
-				search_attribute = "second_name"
-			case "3":
-				search_attribute = "phone"
-			case "4":
-				search_attribute = "email"
-			case "5":
-				search_attribute = "house_name_or_number"
-			case "6":
-				search_attribute = "address_line_1"
-			case "7":
-				search_attribute = "address_line_2"
-			case "8":
-				search_attribute = "postcode"
+		while True:
+			#print and user input to display options that the search functionailty provides
+			print("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. House Name or Number\n6. Address Line 1\n7. Address Line 2\n8. Postcode\nOr press x to exit back to the home screen")
+			search_attribute_input = input("Enter the number of the aspect you would like to search by: ").lower()
+			'''
+			this statement converts the user friendly input (numbers) into the "search attributes" that
+			are required to interact with the list imported from the json file that contain
+			the contacts in the contact book
+			it also assigns variable to output to the user that looks more user friendly
+			'''
+			match search_attribute_input:
+				case "1":
+					search_attribute = "first_name"
+					break
+				case "2":
+					search_attribute = "second_name"
+					break
+				case "3":
+					search_attribute = "phone"
+					break
+				case "4":
+					search_attribute = "email"
+					break
+				case "5":
+					search_attribute = "house_name_or_number"
+					break
+				case "6":
+					search_attribute = "address_line_1"
+					break
+				case "7":
+					search_attribute = "address_line_2"
+					break
+				case "8":
+					search_attribute = "postcode"
+					break
+				case "x":
+					return
+				case _:
+					print("Invalid input, pleae enter number 1-8")
 
 		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
 		UXattribute = helper.format_title(search_attribute)
@@ -132,6 +145,7 @@ class ListBase:
 				each contact is surrounded by a series of dashes to make contacts more readabe when more than one
 				is returned
 				'''
+
 		for i,result in enumerate(results):
 			print("\n----------Contact: " + str(i+1) + "----------\n")
 			result_contact_details = result.get_contact_details()
@@ -140,7 +154,13 @@ class ListBase:
 				print(detail_title + ': ' + helper.format_values(result_contact_details[detail], detail))
 			print("\n--------------------------------\n")
 
-		print('Enter the number of the contact you would like to view, or press x to exit')
+		if len(results) == 0:
+			print("No contacts found for search term", search_term, "with aspect", UXattribute, "Please try again or press x to exit")
+			self.search()
+			return
+		else:
+			print('Enter the number of the contact you would like to view, or press x to exit')
+
 		while True:
 			try:
 				user_input = input()
