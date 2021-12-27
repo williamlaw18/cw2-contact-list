@@ -35,8 +35,19 @@
         "group_id": "group-1234e47"
       },
       {
-        "first_name": "Will",
-        "second_name": "Law",
+        "first_name": "will",
+        "second_name": "law",
+        "phone": "07701 239611",
+        "email": "25045125@edgehill.ac.uk",
+        "house_name_or_number": "49",
+        "address_line_1": "somthing street",
+        "address_line_2": "Ormskirk",
+        "postcode": "L39 0WZ",
+        "group_id": "group-1234e47"
+      },
+      {
+        "first_name": "adam",
+        "second_name": "baguma",
         "phone": "07701 239611",
         "email": "25045125@edgehill.ac.uk",
         "house_name_or_number": "49",
