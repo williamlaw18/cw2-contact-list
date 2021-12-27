@@ -40,7 +40,7 @@ class ListBase:
 		this to the inbuilt python sort method. This will be run everytime a contact is added
 		'''
 		self.contact_list.sort(key = self.__sort_key)
-		print('sorting')
+	
 
 
 
@@ -59,7 +59,7 @@ class ListBase:
 				print(f'{i + 1}: {contact_name}')
 			print("Enter the number of the contact you want to view/edit, or press s to search ")    
 			while True:
-				# try:
+				try:
 					user_input = input()
 					if(user_input.lower() == 's'):
 						self.search()
@@ -69,8 +69,9 @@ class ListBase:
 						chosen_contact = self.contact_list[user_selection]
 						chosen_contact.display_contact()
 						break
-				# except:
+				except:
 					print('input not recognised')
+			
             
             
 
@@ -122,8 +123,8 @@ class ListBase:
 		'''
 		for contact in self.contact_list:
 			if sanitised_search_term in contact.get_contact_details()[search_attribute]:  
-				results.append(contact.get_contact_details())   
-				print(results)   
+				results.append(contact)   
+			 
 				'''
 				This code iterates for each contact that was found that contains the substring
 				it outputs alongside an identifier from 1 to n amount of contacts
@@ -133,14 +134,26 @@ class ListBase:
 				'''
 		for i,result in enumerate(results):
 			print("\n----------Contact: " + str(i+1) + "----------\n")
-			for detail in result:
+			result_contact_details = result.get_contact_details()
+			for detail in result_contact_details:
 				detail_title = helper.format_title(detail, True)
-				print(detail_title + ': ' + result[detail])
+				print(detail_title + ': ' + helper.format_values(result_contact_details[detail], detail))
 			print("\n--------------------------------\n")
 
-		contact_selection = int(input("Enter the number of contact would you like to select: "))
-		return results[contact_selection - 1] #returning the result of the search to be used in a higher order function
-		
+		print('Enter the number of the contact you would like to view, or press x to exit')
+		while True:
+			try:
+				user_input = input()
+				if(user_input.lower() == 'x'):
+					break
+				else:
+					user_selection = int(user_input) -1
+					chosen_contact = results[user_selection]
+					chosen_contact.display_contact()
+					break
+			except:
+				print('Search selection not recognised, please try again')
+
 
             
 
