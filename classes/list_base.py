@@ -96,7 +96,7 @@ class ListBase:
 			case "1":
 				search_attribute = "first_name"
 			case "2":
-				search_attribute = "last name"
+				search_attribute = "second_name"
 			case "3":
 				search_attribute = "phone"
 			case "4":
@@ -111,7 +111,7 @@ class ListBase:
 				search_attribute = "postcode"
 
 		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
-		UXattribute = helper.format_title(search_attribute).lower()
+		UXattribute = helper.format_title(search_attribute)
 		search_term = input("Enter the " + UXattribute + " you would like to search for: ")
 
 		sanitised_search_term = search_term.strip().lower()
@@ -134,7 +134,7 @@ class ListBase:
 		for i,result in enumerate(results):
 			print("\n----------Contact: " + str(i+1) + "----------\n")
 			for detail in result:
-				detail_title = ' '.join(detail.split('_')).capitalize()
+				detail_title = helper.format_title(detail, True)
 				print(detail_title + ': ' + result[detail])
 			print("\n--------------------------------\n")
 
