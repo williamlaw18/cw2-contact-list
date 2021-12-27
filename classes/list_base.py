@@ -95,30 +95,23 @@ class ListBase:
 		match search_attribute_input:
 			case "1":
 				search_attribute = "first_name"
-				UXattribute = "first name"
 			case "2":
-				search_attribute = "second_name"
-				UXattribute = ""
+				search_attribute = "last name"
 			case "3":
 				search_attribute = "phone"
-				UXattribute = "phone number"
 			case "4":
 				search_attribute = "email"
-				UXattribute = "email"
 			case "5":
 				search_attribute = "house_name_or_number"
-				UXattribute = "house name or number"
 			case "6":
 				search_attribute = "address_line_1"
-				UXattribute = "address line 1"
 			case "7":
 				search_attribute = "address_line_2"
-				UXattribute = "address line 2"
 			case "8":
 				search_attribute = "postcode"
-				UXattribute = "postcode"
 
 		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
+		UXattribute = helper.format_title(search_attribute).lower()
 		search_term = input("Enter the " + UXattribute + " you would like to search for: ")
 
 		sanitised_search_term = search_term.strip().lower()
