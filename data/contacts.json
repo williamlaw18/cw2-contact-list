@@ -85,36 +85,6 @@
             "address_line_2": "asd",
             "postcode": "la127nj"
         },
-        "_Contact__group_id": "group-1234e47",
-        "_Contact__group_name": null,
-        "_Contact__contacted_counter": 0
-    },
-    {
-        "_Contact__contact_details": {
-            "first_name": "ewfds",
-            "second_name": "sfas",
-            "phone": "2434234",
-            "email": "dasdasd@gmail.com",
-            "house_name_or_number": "asdasd",
-            "address_line_1": "asdas",
-            "address_line_2": "dasd",
-            "postcode": "la127nj"
-        },
-        "_Contact__group_id": null,
-        "_Contact__group_name": null,
-        "_Contact__contacted_counter": 0
-    },
-    {
-        "_Contact__contact_details": {
-            "first_name": "erws",
-            "second_name": "sdf",
-            "phone": "324234",
-            "email": "fsdf@gmai.com",
-            "house_name_or_number": "435345",
-            "address_line_1": "asdasd",
-            "address_line_2": "dasd",
-            "postcode": "la127nj"
-        },
         "_Contact__group_id": null,
         "_Contact__group_name": null,
         "_Contact__contacted_counter": 0
