@@ -83,12 +83,10 @@ class Contact:
     def __create_email_link(self):
         webbrowser.open("mailto: " + self.__contact_details['email'])
         self.__contacted_counter += 1
-        print("This contact has been contacted " + str(self.__contacted_counter) + " times.")
 
     def __create_tel_link(self):
         webbrowser.open("tel: " + self.__contact_details['phone'])
         self.__contacted_counter += 1
-        print("This contact has been contacted " + str(self.__contacted_counter) + " times.")
 
 #-------------------------- Public Methods --------------------------------
 
@@ -148,6 +146,8 @@ class Contact:
             detail_title = helper.format_title(detail, True)
             contact_detail = helper.format_values(self.__contact_details[detail], detail)
             print(detail_title + ': ' + contact_detail)
+
+        print("Contacted: " + str(self.__contacted_counter) + " times.")
         
         print('press 1 to email, press 2 to phone, 3 to edit or any other charicter to go back to main menu:')
         user_input = input()
@@ -186,6 +186,7 @@ class Contact:
 
     def get_contacted_counter(self):
         return self.__contacted_counter    
+
        
 
 
