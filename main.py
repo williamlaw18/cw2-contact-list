@@ -4,6 +4,7 @@ from classes.contact import Contact
 from classes.group import Group
 from classes.contact_list import ContactList
 from classes.favorites import Favorites
+import helper_methods.helper as helper
 
 class ContactBook:
 	def __init__(self):
@@ -11,7 +12,7 @@ class ContactBook:
 		self.__favorite_list = Favorites()
 		self.__read_from_json()
 		self.__run_program_loop()
-				
+			
 	   
 	def __run_program_loop(self):
 	
@@ -22,6 +23,7 @@ class ContactBook:
 		'''
 
 		while True:
+			
 			print('Enter the number of the feature you want, or press 1 to see the menu')
 			user_input = input()
 
