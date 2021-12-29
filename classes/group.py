@@ -1,3 +1,4 @@
+import json
 from classes.list_base import ListBase
 import helper_methods.helper as helper
 import uuid
@@ -73,7 +74,7 @@ class Group(ListBase):
 		'''
 		takes group passed from __read_from_json method on the main class and runs the __create_group method
 		'''
-		self.__create_group(group['group_name'], group['group_description'], group['group_id'])
+		self.__create_group(group['_Group__group_name'], group['_Group__group_description'], group['_Group__group_id'])
 
 	def display_group(self):
 		'''
@@ -119,6 +120,10 @@ class Group(ListBase):
 						contact.set_group_id(new_group.get_group_id())
 						new_group.append_contact(contact)
 						contact_list.append_groups(new_group)
+
+						json_object = helper.toJSON(contact_list.get_groups())
+						with open("./data/groups.json", "w") as file:
+							file.write(json_object)
 						break
 					else:
 						user_selection = int(user_input) - 1
@@ -150,6 +155,10 @@ class Group(ListBase):
 					new_group = Group()
 					new_group.create_group_from_user_input()
 					contact_list.append_groups(new_group)
+
+					json_object = helper.toJSON(contact_list.get_groups())
+					with open("./data/groups.json", "w") as file:
+						file.write(json_object)
 					break
 				else:
 					user_selection = int(user_input) - 1

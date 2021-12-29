@@ -135,9 +135,24 @@ class Contact:
                 except:
                     print('Sorry, input not recognised')
 
+    def remove_contact(self, contact_list):
 
+        print('Are you sure you want to remove this contact?')
+        user_input = input('Type "Yes" if this is correct: ')
+        match user_input:
+            case 'Yes':
+                contact_list.remove(self)
 
-    def display_contact(self):
+                json_object = helper.toJSON(contact_list)
+                with open("./data/contacts.json", "w") as file:
+                    file.write(json_object)
+
+                print('Contact Removed')
+                return
+            case _:
+                return
+
+    def display_contact(self, contact_list):
         '''
         This method displays all the user details. The join, split and capitalise methods are run on the detail key.
         This turns somthing like address_1 into Address 1 for readability in the print statement.
@@ -149,7 +164,7 @@ class Contact:
 
         print("Contacted: " + str(self.__contacted_counter) + " times.")
         
-        print('press 1 to email, press 2 to phone, 3 to edit or any other charicter to go back to main menu:')
+        print('press 1 to email, press 2 to phone, 3 to edit, 4 to remove or any other character to go back to main menu:')
         user_input = input()
 
         match user_input:
@@ -161,6 +176,9 @@ class Contact:
                 return
             case '3':
                 self.edit_contact()
+                return
+            case '4':
+                self.remove_contact(contact_list)
                 return
             case _:
                 return

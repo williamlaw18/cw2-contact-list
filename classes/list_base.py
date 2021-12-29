@@ -67,7 +67,7 @@ class ListBase:
 					else:
 						user_selection = int(user_input) -1
 						chosen_contact = self.contact_list[user_selection]
-						chosen_contact.display_contact()
+						chosen_contact.display_contact(self.contact_list)
 						break
 				except:
 					print('input not recognised')
@@ -169,7 +169,7 @@ class ListBase:
 				else:
 					user_selection = int(user_input) -1
 					chosen_contact = results[user_selection]
-					chosen_contact.display_contact()
+					chosen_contact.display_contact(self.contact_list)
 					break
 			except:
 				print('Search selection not recognised, please try again')
