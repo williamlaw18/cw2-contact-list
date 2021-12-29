@@ -74,7 +74,7 @@ class Group(ListBase):
 		'''
 		takes group passed from __read_from_json method on the main class and runs the __create_group method
 		'''
-		self.__create_group(group['group_name'], group['group_description'], group['group_id'])
+		self.__create_group(group['_Group__group_name'], group['_Group__group_description'], group['_Group__group_id'])
 
 	def display_group(self):
 		'''

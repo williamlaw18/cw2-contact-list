@@ -100,9 +100,9 @@ class ContactBook:
 			jsonPath.close()    
 
 
-		with open("./data/contactList.json", "r") as jsonPathGroup:
+		with open("./data/groups.json", "r") as jsonPathGroup:
 			jsonPathFile = json.load(jsonPathGroup)
-			imported_group_list = jsonPathFile[0]['groups']
+			imported_group_list = jsonPathFile
 
 			for json_group in imported_group_list:
 				imported_group = Group()
