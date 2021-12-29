@@ -1,0 +1,122 @@
+[
+    {
+        "_Contact__contact_details": {
+            "first_name": "adam",
+            "second_name": "baguma",
+            "phone": "07701 239611",
+            "email": "25045125@edgehill.ac.uk",
+            "house_name_or_number": "49",
+            "address_line_1": "somthing street",
+            "address_line_2": "Ormskirk",
+            "postcode": "L39 0WZ"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "harry",
+            "second_name": "ellis",
+            "phone": "07701 289311",
+            "email": "25045725@edgehill.ac.uk",
+            "house_name_or_number": "21",
+            "address_line_1": "somthing street",
+            "address_line_2": "Ormskirk",
+            "postcode": "L39 0WZ"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "chris",
+            "second_name": "kneller",
+            "phone": "07701 289311",
+            "email": "25045725@edgehill.ac.uk",
+            "house_name_or_number": "26",
+            "address_line_1": "48 snt james street",
+            "address_line_2": "liverpool",
+            "postcode": "l1 0ab"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "morgan",
+            "second_name": "lyons",
+            "phone": "07701 289311",
+            "email": "25045725@edgehill.ac.uk",
+            "house_name_or_number": "87",
+            "address_line_1": "somthing street",
+            "address_line_2": "Ormskirk",
+            "postcode": "L39 0WZ"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "will",
+            "second_name": "law",
+            "phone": "07701 239611",
+            "email": "25045125@edgehill.ac.uk",
+            "house_name_or_number": "49",
+            "address_line_1": "somthing street",
+            "address_line_2": "Ormskirk",
+            "postcode": "L39 0WZ"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "newdude",
+            "second_name": "new",
+            "phone": "32423",
+            "email": "test@gmail.com",
+            "house_name_or_number": "t543",
+            "address_line_1": "dsadas",
+            "address_line_2": "asd",
+            "postcode": "la127nj"
+        },
+        "_Contact__group_id": "group-1234e47",
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "ewfds",
+            "second_name": "sfas",
+            "phone": "2434234",
+            "email": "dasdasd@gmail.com",
+            "house_name_or_number": "asdasd",
+            "address_line_1": "asdas",
+            "address_line_2": "dasd",
+            "postcode": "la127nj"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "erws",
+            "second_name": "sdf",
+            "phone": "324234",
+            "email": "fsdf@gmai.com",
+            "house_name_or_number": "435345",
+            "address_line_1": "asdasd",
+            "address_line_2": "dasd",
+            "postcode": "la127nj"
+        },
+        "_Contact__group_id": null,
+        "_Contact__group_name": null,
+        "_Contact__contacted_counter": 0
+    }
+]

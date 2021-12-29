@@ -1,0 +1,108 @@
+[
+    {
+        "contact_list": [
+            {
+                "_Contact__contact_details": {
+                    "first_name": "chris",
+                    "second_name": "kneller",
+                    "phone": "07701 289311",
+                    "email": "25045725@edgehill.ac.uk",
+                    "house_name_or_number": "26",
+                    "address_line_1": "48 snt james street",
+                    "address_line_2": "liverpool",
+                    "postcode": "l1 0ab"
+                },
+                "_Contact__group_id": "group-1234e43",
+                "_Contact__group_name": null,
+                "_Contact__contacted_counter": 0
+            }
+        ],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Friends",
+        "_Group__group_description": "Group of close friends",
+        "_Group__group_id": "group-1234e43"
+    },
+    {
+        "contact_list": [
+            {
+                "_Contact__contact_details": {
+                    "first_name": "harry",
+                    "second_name": "ellis",
+                    "phone": "07701 289311",
+                    "email": "25045725@edgehill.ac.uk",
+                    "house_name_or_number": "21",
+                    "address_line_1": "somthing street",
+                    "address_line_2": "Ormskirk",
+                    "postcode": "L39 0WZ"
+                },
+                "_Contact__group_id": "group-1234e46",
+                "_Contact__group_name": null,
+                "_Contact__contacted_counter": 0
+            }
+        ],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Work",
+        "_Group__group_description": "Work Contacts",
+        "_Group__group_id": "group-1234e46"
+    },
+    {
+        "contact_list": [
+            {
+                "_Contact__contact_details": {
+                    "first_name": "adam",
+                    "second_name": "baguma",
+                    "phone": "07701 239611",
+                    "email": "25045125@edgehill.ac.uk",
+                    "house_name_or_number": "49",
+                    "address_line_1": "somthing street",
+                    "address_line_2": "Ormskirk",
+                    "postcode": "L39 0WZ"
+                },
+                "_Contact__group_id": "group-1234e47",
+                "_Contact__group_name": null,
+                "_Contact__contacted_counter": 0
+            },
+            {
+                "_Contact__contact_details": {
+                    "first_name": "morgan",
+                    "second_name": "lyons",
+                    "phone": "07701 289311",
+                    "email": "25045725@edgehill.ac.uk",
+                    "house_name_or_number": "87",
+                    "address_line_1": "somthing street",
+                    "address_line_2": "Ormskirk",
+                    "postcode": "L39 0WZ"
+                },
+                "_Contact__group_id": "group-1234e47",
+                "_Contact__group_name": null,
+                "_Contact__contacted_counter": 0
+            },
+            {
+                "_Contact__contact_details": {
+                    "first_name": "will",
+                    "second_name": "law",
+                    "phone": "07701 239611",
+                    "email": "25045125@edgehill.ac.uk",
+                    "house_name_or_number": "49",
+                    "address_line_1": "somthing street",
+                    "address_line_2": "Ormskirk",
+                    "postcode": "L39 0WZ"
+                },
+                "_Contact__group_id": "group-1234e47",
+                "_Contact__group_name": null,
+                "_Contact__contacted_counter": 0
+            }
+        ],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Family",
+        "_Group__group_description": "Family contacts",
+        "_Group__group_id": "group-1234e47"
+    },
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "s",
+        "_Group__group_description": "s",
+        "_Group__group_id": "groupa0c0e07a-2588-4752-9a4d-e76b92cc9da9"
+    }
+]

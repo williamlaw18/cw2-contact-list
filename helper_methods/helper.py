@@ -1,3 +1,5 @@
+import json
+
 def format_title(text, capitalised = False):
     '''
     This function takes text with underscores and removes them. It accepts a 'capitalised'
