@@ -182,4 +182,6 @@ class ListBase:
 		Deletes Contact
 		'''
       
+	def clear_all_contacts(self, contact):
+		self.contact_list = []
 
