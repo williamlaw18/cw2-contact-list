@@ -1,3 +1,5 @@
+import json
+
 def format_title(text, capitalised = False):
     '''
     This function takes text with underscores and removes them. It accepts a 'capitalised'
@@ -22,3 +24,7 @@ def format_values(text, type):
             return text
         case _:
             return text.title()
+
+def toJSON(object):
+    return json.dumps(object, default=lambda o: o.__dict__, 
+        sort_keys=False, indent=4)

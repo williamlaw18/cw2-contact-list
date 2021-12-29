@@ -1,4 +1,5 @@
 import json
+import helper_methods.helper as helper
 from classes.contact import Contact
 from classes.group import Group
 from classes.contact_list import ContactList
@@ -65,9 +66,13 @@ class ContactBook:
 		'''
 		new_contact = Contact()
 		new_contact.create_contact()
-		Group.static_add_to_group(new_contact, self.__contact_list)
-		self.__contact_list.append_contact(new_contact)
 
+		Group.static_add_to_group(new_contact, self.__contact_list)
+		self.__contact_list.append_contact(new_contact)	
+		
+		json_object = helper.toJSON(self.__contact_list.get_contacts())
+		with open("./data/contacts.json", "w") as file:
+			file.write(json_object)
 
 	def __show_groups(self):
 		Group.static_display_and_add_groups(self.__contact_list)
@@ -82,24 +87,28 @@ class ContactBook:
 		these classes are instansiated and stored in the correct place.
 		'''
 		   
-		with open("./data/contactList.json", "r") as jsonPath:
+		with open("./data/contacts.json", "r") as jsonPath:
 			jsonFile = json.load(jsonPath)
-			imported_group_list = jsonFile[0]['groups']
-			imported_contact_list = jsonFile[0]['contacts']
-
-			for json_group in imported_group_list:
-				imported_group = Group()
-				imported_group.create_group_from_json(json_group)
-				self.__contact_list.append_groups(imported_group)
+			imported_contact_list = jsonFile
 					
 			for json_contact in imported_contact_list:
 				imported_contact = Contact()
-				imported_contact.create_contact_from_json(json_contact)
+				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'])
 				self.__contact_list.append_contact(imported_contact)
 				for existing_group in self.__contact_list.get_groups():
 					existing_group.append_contact_from_json(imported_contact)
 			jsonPath.close()    
 
+
+		with open("./data/groups.json", "r") as jsonPathGroup:
+			jsonPathFile = json.load(jsonPathGroup)
+			imported_group_list = jsonPathFile
+
+			for json_group in imported_group_list:
+				imported_group = Group()
+				imported_group.create_group_from_json(json_group)
+				self.__contact_list.append_groups(imported_group)
+			jsonPathGroup.close()   
 						
 	def __search_contact_list(self):
 		self.__contact_list.search()

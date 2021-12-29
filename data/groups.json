@@ -1,0 +1,37 @@
+[
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Friends",
+        "_Group__group_description": "Group of close friends",
+        "_Group__group_id": "group-1234e43"
+    },
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Work",
+        "_Group__group_description": "Work Contacts",
+        "_Group__group_id": "group-1234e46"
+    },
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "Family",
+        "_Group__group_description": "Family contacts",
+        "_Group__group_id": "group-1234e47"
+    },
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "sfsdfs",
+        "_Group__group_description": "sdf",
+        "_Group__group_id": "group02e572a9-5ccf-44b5-9870-46fc485ec1ef"
+    },
+    {
+        "contact_list": [],
+        "sort_by_identifier": "second_name",
+        "_Group__group_name": "tester",
+        "_Group__group_description": "dfsdf",
+        "_Group__group_id": "group27ae3487-6fc7-4b7b-baeb-6cabe897f26c"
+    }
+]
