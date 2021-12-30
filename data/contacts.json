@@ -14,5 +14,21 @@
             "group973d2e58-f42e-4b5d-a6ba-480141cf82fc"
         ],
         "_Contact__contacted_counter": 0
+    },
+    {
+        "_Contact__contact_details": {
+            "first_name": "chris",
+            "second_name": "kneller",
+            "phone": "01993 200547",
+            "email": "chris@chris.com",
+            "house_name_or_number": "198 wadards meadow",
+            "address_line_1": "21 somthing",
+            "address_line_2": "22",
+            "postcode": "ox283tz"
+        },
+        "_Contact__group_ids": [
+            "group973d2e58-f42e-4b5d-a6ba-480141cf82fc"
+        ],
+        "_Contact__contacted_counter": 0
     }
 ]
