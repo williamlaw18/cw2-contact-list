@@ -10,7 +10,7 @@ class Favorites(ListBase):
 
     def __sort_contact_key(self, element):
         return element.get_contacted_counter()
-        
+
     def __sort_contacts(self):
         
         #This methods sorts contacts by how many times they have been contacted 
@@ -48,6 +48,9 @@ class Favorites(ListBase):
 
     def get_threshold(self):
         return self.__threshold
+
+    def get_name(self):
+        return self.__name
 
     
 

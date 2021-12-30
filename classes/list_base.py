@@ -15,7 +15,6 @@ class ListBase:
 		self.contact_list = []
 		self.sort_by_identifier = 'second_name'
 
-
 #-------------------------- Private Methods --------------------------------
 
 	def __sort_key(self, element):
@@ -25,12 +24,12 @@ class ListBase:
 		to be used in the search method
 	
 		'''
-	
 
 		contact_field_value = element.get_contact_details()[self.sort_by_identifier][0]
 		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
 		
 		return contact_field_string_index 
+
 
 	def __sort_contacts(self):
 
@@ -40,8 +39,6 @@ class ListBase:
 		this to the inbuilt python sort method. This will be run everytime a contact is added
 		'''
 		self.contact_list.sort(key = self.__sort_key)
-	
-
 
 
 #-------------------------- Public Methods --------------------------------
@@ -75,13 +72,12 @@ class ListBase:
 					print('Please enter a valid number, or press x to exit')
 				except IndexError:
 					print('No contact exists at that selection, please try again')
-			
-            
-            
+		
 
 	def append_contact(self, contact):
 		self.contact_list.append(contact)
 		self.__sort_contacts()
+		
 
 	def search(self):
 		'''

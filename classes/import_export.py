@@ -2,6 +2,7 @@ import json
 from classes.contact import Contact
 from classes.group import Group
 
+
 class ImportExport:
 	def __init__(self, contact_list):
 		self.__contact_list = contact_list
@@ -43,19 +44,16 @@ class ImportExport:
 			jsonPath.close()    
 
 
-	def save_to_json(self):
-		self.__save_groups_to_json()
-		self.__save_contacts_to_json()		
+	def save(self):
+		self.__export_to_json(self.__contacts_path, self.__contact_list.get_contacts())
+		self.__export_to_json(self.__groups_path, self.__contact_list.get_groups())
+	
 
-	def __save_groups_to_json(self):
-		json_object = self.__to_JSON(self.__contact_list.get_groups())
-		with open("./data/groups.json", "w") as file:
+	def __export_to_json(self, path, object):
+		json_object = self.__to_JSON(object)
+		with open(path, "w") as file:
 			file.write(json_object)
 
-	def __save_contacts_to_json(self):
-		json_object = self.__to_JSON(self.__contact_list.get_contacts())
-		with open("./data/contacts.json", "w") as file:
-			file.write(json_object)
 
 	def __to_JSON(self, object):
 		return json.dumps(object, default=lambda o: o.__dict__, 
