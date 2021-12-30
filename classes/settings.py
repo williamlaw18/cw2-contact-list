@@ -59,14 +59,15 @@ class Settings:
   
 	def __settings_favourites_threshold(self):
 		print('please enter how many times a contact is contacted before being listed as a favourite compared to the average')
+		print('The current threshold is ' +  str(self.__favorite_list.get_threshold()))
 		while True:
 			try:
-				userinput = int(input())
-				self.__favorite_list.threshold = userinput
-				print('Threshold successfully changed to ' + str(userinput))
+				user_input = int(input())
+				self.__favorite_list.set_threshold(user_input)
+				print('Threshold successfully changed to ' + str(user_input))
 				break
-			except:
-				print('input not recognised')
+			except ValueError:
+				print('Please enter a valid number')
     
 	def __settings_sort_by(self):
 			sort_by_fields = ['first_name','second_name', 'postcode','email']

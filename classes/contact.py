@@ -5,8 +5,6 @@ from classes.group import Group
 import webbrowser
 import helper_methods.helper as helper
 
-
-
 class Contact:
     def __init__(self):
         self.__contact_details = {

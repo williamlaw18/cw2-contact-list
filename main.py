@@ -24,7 +24,7 @@ class ContactBook:
 	
 		'''
 		This method runs the main program loop. This waits on the user input, which is then entered into
-		an if/else statement that will run the particular methods chosen by the user
+		a match case statement that will run the particular methods chosen by the user
 	  
 		'''
 		
@@ -84,9 +84,6 @@ class ContactBook:
 		Group.static_add_to_group(new_contact, self.__contact_list)
 		self.__contact_list.append_contact(new_contact)	
 		
-		json_object = helper.toJSON(self.__contact_list.get_contacts())
-		with open("./data/contacts.json", "w") as file:
-			file.write(json_object)
 
 	def __show_groups(self):
 		Group.static_display_and_add_groups(self.__contact_list)
@@ -107,7 +104,7 @@ class ContactBook:
 	def __loop_reset_logic(self):
 		'''
 		This logic runs every time the program loops, it detects if the favorites need to be updated
-		and wether there are any changes that need to be saved to JSON.
+		and if there are any changes that need to be saved to JSON.
 		'''
 
 		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
@@ -115,10 +112,6 @@ class ContactBook:
 		if(need_to_save):
 			self.__import_export.save_to_json()
 			
-
-
-# Settings logic:
-
 
 
 if __name__ == '__main__':
