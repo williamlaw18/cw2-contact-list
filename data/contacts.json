@@ -1,16 +1,16 @@
 [
     {
         "_Contact__contact_details": {
-            "first_name": "percy",
-            "second_name": "cloony",
-            "phone": "01993 200547",
+            "first_name": "tom",
+            "second_name": "cunningham",
+            "phone": "01993200547",
             "email": "chris@chris.com",
             "house_name_or_number": "198",
             "address_line_1": "wadards meadow",
-            "address_line_2": "witney",
-            "postcode": "ox28 3tz"
+            "address_line_2": "wintey",
+            "postcode": "ox283tz"
         },
-        "_Contact__group_id": "groupd53fa8b3-85a6-41b8-9b6b-0d173c0dec8b",
+        "_Contact__group_ids": [],
         "_Contact__contacted_counter": 0
     }
 ]

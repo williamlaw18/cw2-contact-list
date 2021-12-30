@@ -27,6 +27,8 @@ class ContactBook:
 		an if/else statement that will run the particular methods chosen by the user
 	  
 		'''
+		
+		print("Welcome to your contacts!")
 
 		while True:
 

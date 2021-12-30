@@ -1,5 +1,6 @@
 
 from classes.group import Group
+import copy
 
 
 class Save:
@@ -63,10 +64,10 @@ class Save:
         formated_dictionary = {}
 
         if(contact_flag):
-            formated_dictionary = item.get_contact_details().copy()
-            formated_dictionary['group_ID'] = item.get_group_id()
+            formated_dictionary = copy.deepcopy(item.get_contact_details())
+            formated_dictionary['group_ID'] = copy.deepcopy(item.get_group_ids())
         else:
-            formated_dictionary = item.get_group_dict().copy()
+            formated_dictionary = copy.deepcopy(item.get_group_dict())
 
         return formated_dictionary
 

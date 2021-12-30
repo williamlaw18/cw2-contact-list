@@ -57,8 +57,9 @@ class Group(ListBase):
 		the group id, the contact is appended to the list using the append_contact method from the parent class.
 		'''
 
-		if contact.get_group_id() == self.__group_id:
-			self.append_contact(contact)
+		for id in contact.get_group_ids():
+			if id == self.get_group_id():
+				self.append_contact(contact)
 
 
 	def create_group_from_user_input(self):

@@ -1,24 +1,9 @@
 [
     {
-        "contact_list": [
-            {
-                "_Contact__contact_details": {
-                    "first_name": "percy",
-                    "second_name": "cloony",
-                    "phone": "01993 200547",
-                    "email": "chris@chris.com",
-                    "house_name_or_number": "198",
-                    "address_line_1": "wadards meadow",
-                    "address_line_2": "witney",
-                    "postcode": "ox28 3tz"
-                },
-                "_Contact__group_id": "groupd53fa8b3-85a6-41b8-9b6b-0d173c0dec8b",
-                "_Contact__contacted_counter": 0
-            }
-        ],
+        "contact_list": [],
         "sort_by_identifier": "second_name",
-        "_Group__group_name": "close mates",
-        "_Group__group_description": "Something or other",
-        "_Group__group_id": "groupd53fa8b3-85a6-41b8-9b6b-0d173c0dec8b"
+        "_Group__group_name": "some group",
+        "_Group__group_description": "dunno",
+        "_Group__group_id": "group973d2e58-f42e-4b5d-a6ba-480141cf82fc"
     }
 ]

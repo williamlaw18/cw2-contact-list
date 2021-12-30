@@ -1,8 +1,11 @@
 
 import re 
 import constants.constant as constant
+from classes.group import Group
 import webbrowser
 import helper_methods.helper as helper
+
+
 
 class Contact:
     def __init__(self):
@@ -19,7 +22,7 @@ class Contact:
 
 
         # initialise group ID to be empty.
-        self.__group_id = ''
+        self.__group_ids = []
 
 
         # amount of times contacted:
@@ -101,13 +104,13 @@ class Contact:
 
         print(self.__contact_details['first_name'].capitalize() + ' Succesfully Added!') 
 
-    def create_contact_from_json(self, json_dict, group_id):
+    def create_contact_from_json(self, json_dict, group_ids):
       
         #uses a loop to pass params into method based on key strings
 
-        self.__group_id = group_id
+        for id in group_ids:
+            self.__group_ids.append(id)
         
-
         for key in json_dict:
                 self.__contact_details[key] = json_dict[key]
 
@@ -171,7 +174,7 @@ class Contact:
 
         print("Contacted: " + str(self.__contacted_counter) + " times.")
         
-        print('press 1 to email, press 2 to phone, 3 to edit, 4 to remove or any other character to go back to main menu:')
+        print('press 1 to email, press 2 to phone, 3 to edit, 4 to add to group, 5 to remove or any other character to go back to main menu:')
         user_input = input()
 
         match user_input:
@@ -185,6 +188,8 @@ class Contact:
                 self.edit_contact()
                 return
             case '4':
+                self.__add_to_group(contact_list)
+            case '5':
                 self.remove_contact(contact_list)
                 return
             case _:
@@ -225,11 +230,37 @@ class Contact:
         match user_input:
             case 'yes':
                 list_class.contact_list.remove(self)
-                self.__group_id = None
+                self.__group_ids.remove(list_class.get_group_id())
                 print('Contact Removed From Group')
                 return
             case _:
                 return
+
+    def __add_to_group(self, contact_list):
+        #checks to see if contact is in a group, if so the group name is concatinated to a string which is output
+        group_list = contact_list.get_groups()
+        group_name_list = []
+        current_group_string = helper.format_title(self.__contact_details['first_name'], True) + ' is currently in '
+
+        if(len(self.__group_ids) == 0):
+            current_group_string += 'no groups, if you would like to add to one, enter Y, or press X to go back to the menu'
+        else:
+            for group in group_list:
+                for conact_group_id in self.__group_ids:
+                    if(conact_group_id == group.get_group_id()):
+                        group_name_list.append(group.get_group_name())
+        
+            current_group_string += ' and '.join(group_name_list) + '.'
+        print(current_group_string)
+
+        Group.static_add_to_group(self, contact_list)
+        
+      
+
+
+
+        
+
     
     
 
@@ -237,8 +268,8 @@ class Contact:
 
 #-------------------------- Getters and Setters --------------------------------
 
-    def get_group_id(self):
-        return self.__group_id
+    def get_group_ids(self):
+        return self.__group_ids
 
     def get_group_name(self):
         return self.__group_name 
@@ -250,7 +281,7 @@ class Contact:
         return self.__contact_details['first_name']        
 
     def set_group_id(self, id):
-        self.__group_id = id
+        self.__group_ids.append(id)
 
     def get_contacted_counter(self):
         return self.__contacted_counter    

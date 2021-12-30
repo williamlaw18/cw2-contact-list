@@ -35,7 +35,7 @@ class ImportExport:
 					
 			for json_contact in imported_contact_list:
 				imported_contact = Contact()
-				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'], json_contact['_Contact__group_id'])
+				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'], json_contact['_Contact__group_ids'])
 				
 				self.__contact_list.append_contact(imported_contact)
 				for existing_group in self.__contact_list.get_groups():
