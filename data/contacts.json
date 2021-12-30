@@ -1,58 +1,16 @@
 [
-  {
-    "_Contact__contact_details": {
-      "first_name": "harry",
-      "second_name": "ellis",
-      "phone": "07701 289311",
-      "email": "25045725@edgehill.ac.uk",
-      "house_name_or_number": "21",
-      "address_line_1": "somthing street",
-      "address_line_2": "Ormskirk",
-      "postcode": "L39 0WZ"
-    },
-    "_Contact__group_id": "group-1234e43",
-    "_Contact__contacted_counter": 0
-  },
-  {
-    "_Contact__contact_details": {
-      "first_name": "tobias",
-      "second_name": "fartbox",
-      "phone": "01993 200 546",
-      "email": "poo@poo.com",
-      "house_name_or_number": "109",
-      "address_line_1": "92",
-      "address_line_2": "iii",
-      "postcode": "ox283tz"
-    },
-    "_Contact__group_id": "group-1234e43",
-    "_Contact__contacted_counter": 0
-  },
-  {
-    "_Contact__contact_details": {
-      "first_name": "chris",
-      "second_name": "kneller",
-      "phone": "01993 200 547",
-      "email": "chris@chris.com",
-      "house_name_or_number": "198",
-      "address_line_1": "wadards meadow",
-      "address_line_2": "witney",
-      "postcode": "ox28 3tz"
-    },
-    "_Contact__group_id": "group-1234e43",
-    "_Contact__contacted_counter": 0
-  },
-  {
-    "_Contact__contact_details": {
-      "first_name": "morgan",
-      "second_name": "lyons",
-      "phone": "07701 289311",
-      "email": "25045725@edgehill.ac.uk",
-      "house_name_or_number": "87",
-      "address_line_1": "somthing street",
-      "address_line_2": "Ormskirk",
-      "postcode": "L39 0WZ"
-    },
-    "_Contact__group_id": null,
-    "_Contact__contacted_counter": 0
-  }
+    {
+        "_Contact__contact_details": {
+            "first_name": "tom",
+            "second_name": "cunningham",
+            "phone": "01993200547",
+            "email": "chris@chris.com",
+            "house_name_or_number": "198",
+            "address_line_1": "wadards meadow",
+            "address_line_2": "wintey",
+            "postcode": "ox283tz"
+        },
+        "_Contact__group_ids": [],
+        "_Contact__contacted_counter": 0
+    }
 ]

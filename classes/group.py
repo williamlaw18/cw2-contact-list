@@ -19,6 +19,7 @@ class Group(ListBase):
 		self.__group_name = None
 		self.__group_description = None
 		self.__group_id = None
+		
 
 
 
@@ -45,6 +46,7 @@ class Group(ListBase):
 
 
 
+
 #-------------------------- Public Methods --------------------------------
 
 	def append_contact_from_json(self, contact):
@@ -55,8 +57,9 @@ class Group(ListBase):
 		the group id, the contact is appended to the list using the append_contact method from the parent class.
 		'''
 
-		if contact.get_group_id() == self.__group_id:
-			self.append_contact(contact)
+		for id in contact.get_group_ids():
+			if id == self.get_group_id():
+				self.append_contact(contact)
 
 
 	def create_group_from_user_input(self):
@@ -94,6 +97,9 @@ class Group(ListBase):
 	def get_group_description(self):
 		return self.__group_description
 
+	def get_group_dict(self):
+		return {"group_name" : self.__group_name, "group_description": self.__group_description, "group_id": self.__group_id }
+
 #-------------------------- Static Methods --------------------------------
 
 	@staticmethod
@@ -120,10 +126,6 @@ class Group(ListBase):
 						contact.set_group_id(new_group.get_group_id())
 						new_group.append_contact(contact)
 						contact_list.append_groups(new_group)
-
-						json_object = helper.toJSON(contact_list.get_groups())
-						with open("./data/groups.json", "w") as file:
-							file.write(json_object)
 						break
 					else:
 						user_selection = int(user_input) - 1
@@ -166,7 +168,7 @@ class Group(ListBase):
 					user_selection = int(user_input) - 1
 					group_list[user_selection].display_group()
 					break
-			except ValueError:
+			except ValueError as e:
 				print('Please enter a valid number, or press A to add a new group')
 			except IndexError:
 				print('No group exists at that selection, please try again')
