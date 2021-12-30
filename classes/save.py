@@ -10,17 +10,10 @@ class Save:
             "contact_list":[]
         }
 
-        self.current_state = {
-            "group_list": [],
-            "contact_list":[]
-        }
-
 
     def create_snapshot(self, contact_list, group_list):
-
         previous_group_list = []
         previous_contact_list = []
-
 
         for contact in contact_list:
             previous_contact_list.append(self.__format_for_comparison(contact, True))
@@ -31,6 +24,7 @@ class Save:
         self.previous_state['group_list'] = previous_group_list
         self.previous_state['contact_list'] = previous_contact_list
 
+
     def compare_snapshot(self,contact_list, group_list):
         '''
         This method compares the current state of the contact list and group list, If there has been
@@ -38,7 +32,6 @@ class Save:
         json after each program loop. This method would start by storing the equality between each lists as 
         a boolean to make sure that the if statement is readable
         '''
-
         current_contact_list = []
         current_group_list = []
 
@@ -47,7 +40,6 @@ class Save:
 
         for group in group_list:
             current_group_list.append(self.__format_for_comparison(group, False))
-
 
         is_group_equal = self.previous_state["group_list"] == current_group_list
         is_contact_equal = self.previous_state["contact_list"] == current_contact_list
@@ -71,8 +63,6 @@ class Save:
 
         return formated_dictionary
 
-    def __clear_fields(self):
-        self.previous_state
 
 
 

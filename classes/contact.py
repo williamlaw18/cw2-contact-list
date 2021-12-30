@@ -5,6 +5,7 @@ from classes.group import Group
 import webbrowser
 import helper_methods.helper as helper
 
+
 class Contact:
     def __init__(self):
         self.__contact_details = {
@@ -18,10 +19,8 @@ class Contact:
             'postcode': None,
         }
 
-
         # initialise group ID to be empty.
         self.__group_ids = []
-
 
         # amount of times contacted:
         self.__contacted_counter = 0
@@ -39,7 +38,6 @@ class Contact:
 
         prompt_title = helper.format_title(field_type)
 
-
         while True:
             user_input = input('Enter ' + prompt_title + ': ' )
             sanitised_input = helper.strip_lowercase(user_input)
@@ -49,8 +47,6 @@ class Contact:
                 self.__contact_details[field_type] = sanitised_input
                 break
 
-        
- 
 
     def __check_field (self, user_input, field_type):
 
@@ -80,13 +76,15 @@ class Contact:
             case _: 
                 return True
         pass
-       
-    def __create_email_link(self):
-        webbrowser.open("mailto: " + self.__contact_details['email'])
-        self.__contacted_counter += 1
 
-    def __create_tel_link(self):
-        webbrowser.open("tel: " + self.__contact_details['phone'])
+
+    def __create_contact_link(self, contact_method):
+        prefix = ''
+        if(contact_method == 'email'):
+            prefix = 'mailto:'
+        else:
+            prefix = 'tel:'
+        webbrowser.open(prefix + self.__contact_details[contact_method])
         self.__contacted_counter += 1
 
 #-------------------------- Public Methods --------------------------------
@@ -102,6 +100,7 @@ class Contact:
 
         print(self.__contact_details['first_name'].capitalize() + ' Succesfully Added!') 
 
+
     def create_contact_from_json(self, json_dict, group_ids):
       
         #uses a loop to pass params into method based on key strings
@@ -112,10 +111,24 @@ class Contact:
         for key in json_dict:
                 self.__contact_details[key] = json_dict[key]
 
+
     def edit_contact(self):
-        print('Enter the number of the field you want to edit, press Y when done')
+
+        '''
+        
+        This method uses a loop to print out all the editable contact details located on the
+        self.__contact_details field. It stores all the keys of the contact details dictionary in a 
+        list. which allows the user to pick the key they want to change in the while loop. this key is 
+        passed to the self.__add_contact_field method which holds all the logic of entering the value for
+        that particular detail
+        
+        '''
 
         old_name = helper.format_values(self.__contact_details['first_name'], 'name')
+        keys = list(self.__contact_details.keys())
+
+        print('Enter the number of the field you want to edit, press Y when done')
+
 
         for i, detail in enumerate(self.__contact_details):
             print(i+1, helper.format_title(detail, True))
@@ -126,7 +139,6 @@ class Contact:
                 break  
             else:
                 try:
-                    keys = list(self.__contact_details.keys())
                     user_selection = int(user_input) - 1
                     selected_attribute = keys[user_selection]
                     self.__add_contact_field(selected_attribute)
@@ -139,6 +151,7 @@ class Contact:
                 except IndexError:
                     print('No option exists at that selection, please try again')
 
+
     def remove_contact(self, list_class):
 
         '''
@@ -146,18 +159,28 @@ class Contact:
         favorite or a group
         '''
         list_type = type(list_class).__name__
+        list_name = helper.format_title(list_class.get_name())
 
-        match list_type:
-            case 'ContactList':
-                print('Are you sure you want to remove this contact?')
-                self.__remove_contact_from_contact_list(list_class)
-            case 'Group':
-                print('Are you sure you want to remove this contact from this group?')
-                self.__remove_contact_from_group(list_class)
-            case 'Favorites':
-                print('Are you sure you want to remove this contact from your Favorites?')
-                self.__remove_contact_from_favorites(list_class)
+        print(f'Are you sure you want to remove {helper.format_title(self.__contact_details["first_name"], True)} from {list_name}?')
 
+        user_input = input("Type 'yes' to confirm \n").lower()
+
+        if(user_input == 'yes'):
+            list_class.contact_list.remove(self)
+
+            match list_type:
+                case 'ContactList':
+                    for group in list_class.get_groups():
+                        if self in group.contact_list:
+                            group.contact_list.remove(self)
+                    del(self)
+                case 'Group':
+                    self.__group_ids.remove(list_class.get_group_id())
+                    self.__remove_contact_from_group(list_class)
+                case 'Favorites':
+                    self.__remove_contact_from_favorites(list_class)
+
+            print('Contact removed')
 
 
     def display_contact(self, contact_list):
@@ -177,10 +200,10 @@ class Contact:
 
         match user_input:
             case '1':
-                self.__create_email_link()
+                self.__create_contact_link('email')
                 return
             case '2':
-                self.__create_tel_link()
+                self.__create_contact_link('phone')
                 return
             case '3':
                 self.edit_contact()
@@ -195,44 +218,6 @@ class Contact:
 
 #-------------------------- Private Methods --------------------------------]
 
-    def __remove_contact_from_contact_list(self, list_class):
-        user_input = input('Type "Yes" if this is correct: ').lower()
-        match user_input:
-            case 'yes':
-                list_class.contact_list.remove(self)
-
-
-                for group in list_class.get_groups():
-                    if self in group.contact_list:
-                        group.contact_list.remove(self)
-
-                del(self)
-                print('Contact Removed')
-                return
-            case _:
-                return
-    
-    def __remove_contact_from_favorites(self, list_class):
-        user_input = input('Type "Yes" if this is correct: ').lower()
-        match user_input:
-            case 'yes':
-                list_class.contact_list.remove(self)
-
-                print('Contact Removed From Favorites')
-                return
-            case _:
-                return
-    
-    def __remove_contact_from_group(self, list_class):
-        user_input = input('Type "Yes" if this is correct: ').lower()
-        match user_input:
-            case 'yes':
-                list_class.contact_list.remove(self)
-                self.__group_ids.remove(list_class.get_group_id())
-                print('Contact Removed From Group')
-                return
-            case _:
-                return
 
     def __add_to_group(self, contact_list):
         #checks to see if contact is in a group, if so the group name is concatinated to a string which is output
@@ -246,40 +231,30 @@ class Contact:
             for group in group_list:
                 for conact_group_id in self.__group_ids:
                     if(conact_group_id == group.get_group_id()):
-                        group_name_list.append(group.get_group_name())
+                        group_name_list.append(group.get_name())
         
             current_group_string += ' and '.join(group_name_list) + '.'
         print(current_group_string)
 
         Group.static_add_to_group(self, contact_list)
         
-      
-
-
-
-        
-
-    
-    
-
-
-
 #-------------------------- Getters and Setters --------------------------------
 
     def get_group_ids(self):
         return self.__group_ids
 
-    def get_group_name(self):
-        return self.__group_name 
 
     def get_contact_details(self):
         return self.__contact_details  
 
+
     def get_contact_name(self):
-        return self.__contact_details['first_name']        
+        return self.__contact_details['first_name']  
+
 
     def set_group_id(self, id):
         self.__group_ids.append(id)
+        
 
     def get_contacted_counter(self):
         return self.__contacted_counter    

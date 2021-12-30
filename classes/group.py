@@ -90,7 +90,7 @@ class Group(ListBase):
 
 #-------------------------- Getters --------------------------------
 
-	def get_group_name(self):
+	def get_name(self):
 		return self.__group_name
 	def get_group_id(self):
 		return self.__group_id

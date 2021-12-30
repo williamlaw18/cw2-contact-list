@@ -8,6 +8,7 @@ from classes.settings import Settings
 from classes.import_export import ImportExport
 from classes.save import Save
 
+
 class ContactBook:
 	def __init__(self):
 		self.__save = Save()
@@ -20,7 +21,6 @@ class ContactBook:
 			
 	   
 	def __run_program_loop(self):
-		
 	
 		'''
 		This method runs the main program loop. This waits on the user input, which is then entered into
@@ -61,7 +61,6 @@ class ContactBook:
 					print('Sorry, input not recognised ')
 			
 			self.__loop_reset_logic()
-		
 
 
 	def __show_menu(self): 
@@ -87,19 +86,24 @@ class ContactBook:
 
 	def __show_groups(self):
 		Group.static_display_and_add_groups(self.__contact_list)
+
 							
 	def __search_contact_list(self):
 		self.__contact_list.search()
 
+
 	def __show_contact_list(self):
 		self.__contact_list.display_contacts()
+
 
 	def __show_favorites(self):
 		print('Your Favorites:')
 		self.__favorite_list.display_contacts()
 
+
 	def __show_settings(self):
 		self.__settings.show_settings()
+
 	
 	def __loop_reset_logic(self):
 		'''
@@ -110,9 +114,8 @@ class ContactBook:
 		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
 		need_to_save = self.__save.compare_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
 		if(need_to_save):
-			self.__import_export.save_to_json()
+			self.__import_export.save()
 			
-
 
 if __name__ == '__main__':
 	ContactBook()
