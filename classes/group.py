@@ -132,8 +132,10 @@ class Group(ListBase):
 						group_list[user_selection].append_contact(contact)
 						print('Succesfully added to group')
 						break
-				except:
-					print('Input not recognised') 
+				except ValueError:
+					print('Please enter a valid number, or press A to make a new group')
+				except IndexError:
+					print('No group exists at that selection, please try again')
 
 		else:
 			return 
@@ -163,7 +165,8 @@ class Group(ListBase):
 				else:
 					user_selection = int(user_input) - 1
 					group_list[user_selection].display_group()
-					#Perhaps I could add the ability to loop through contacts and choose to add to this group
 					break
-			except:
-				print('input not recognised')
+			except ValueError:
+				print('Please enter a valid number, or press A to add a new group')
+			except IndexError:
+				print('No group exists at that selection, please try again')

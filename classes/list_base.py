@@ -67,10 +67,12 @@ class ListBase:
 					else:
 						user_selection = int(user_input) -1
 						chosen_contact = self.contact_list[user_selection]
-						chosen_contact.display_contact(self.contact_list)
+						chosen_contact.display_contact(self)
 						break
-				except:
-					print('input not recognised')
+				except ValueError:
+					print('Please enter a valid number, or press x to exit')
+				except IndexError:
+					print('No contact exists at that selection, please try again')
 			
             
             
@@ -171,8 +173,10 @@ class ListBase:
 					chosen_contact = results[user_selection]
 					chosen_contact.display_contact(self.contact_list)
 					break
-			except:
-				print('Search selection not recognised, please try again')
+			except ValueError:
+				print('Please enter a valid number, or press x to exit')
+			except IndexError:
+				print('No contact exists at that selection, please try again')
 
 
             
@@ -182,6 +186,6 @@ class ListBase:
 		Deletes Contact
 		'''
       
-	def clear_all_contacts(self, contact):
+	def clear_all_contacts(self):
 		self.contact_list = []
 

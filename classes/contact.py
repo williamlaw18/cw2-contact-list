@@ -20,7 +20,7 @@ class Contact:
 
         # initialise group ID to be empty.
         self.__group_id = None
-        self.__group_name = None
+
 
         # amount of times contacted:
         self.__contacted_counter = 0
@@ -101,13 +101,15 @@ class Contact:
 
         print(self.__contact_details['first_name'].capitalize() + ' Succesfully Added!') 
 
-    def create_contact_from_json(self, json_dict):
+    def create_contact_from_json(self, json_dict, group_id):
+        print(group_id)
 
         #uses a loop to pass params into method based on key strings
+
+        self.__group_id = group_id
+        
+
         for key in json_dict:
-            if key == 'group_id':
-                self.__group_id = json_dict[key]
-            else:
                 self.__contact_details[key] = json_dict[key]
 
     def edit_contact(self):
@@ -119,7 +121,7 @@ class Contact:
             print(i+1, helper.format_title(detail, True))
         while True:
             user_input = input()
-            if user_input.lower() == 'y':
+            if user_input.lower() == 'x':
                 print('Finished Editing')  
                 break  
             else:
@@ -130,20 +132,26 @@ class Contact:
                     self.__add_contact_field(selected_attribute)
                     changed_value = helper.format_values(self.__contact_details[selected_attribute], selected_attribute)
                     print(f"{old_name}'s {helper.format_title(selected_attribute)} succesfully changed to: {changed_value}.")
-                    print("Select the attribute you want to change to carry on editing, or press Y to exit")
+                    print("Select the attribute you want to change to carry on editing, or press x to exit")
 
-                except:
-                    print('Sorry, input not recognised')
+                except ValueError:
+                    print('Please enter a valid number, or press x to exit')
+                except IndexError:
+                    print('No option exists at that selection, please try again')
 
-    def remove_contact(self, contact_list):
+    def remove_contact(self, list_class):
 
         print('Are you sure you want to remove this contact?')
-        user_input = input('Type "Yes" if this is correct: ')
+        user_input = input('Type "Yes" if this is correct: ').lower()
         match user_input:
-            case 'Yes':
-                contact_list.remove(self)
+            case 'yes':
+                list_class.contact_list.remove(self)
 
-                json_object = helper.toJSON(contact_list)
+                for group in list_class.get_groups():
+                    if self in group.contact_list:
+                        group.contact_list.remove(self)
+
+                json_object = helper.toJSON(list_class.contact_list)
                 with open("./data/contacts.json", "w") as file:
                     file.write(json_object)
 
