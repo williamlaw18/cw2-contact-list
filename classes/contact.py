@@ -19,7 +19,7 @@ class Contact:
 
 
         # initialise group ID to be empty.
-        self.__group_id = None
+        self.__group_id = ''
 
 
         # amount of times contacted:
@@ -102,8 +102,7 @@ class Contact:
         print(self.__contact_details['first_name'].capitalize() + ' Succesfully Added!') 
 
     def create_contact_from_json(self, json_dict, group_id):
-        print(group_id)
-
+      
         #uses a loop to pass params into method based on key strings
 
         self.__group_id = group_id
@@ -141,24 +140,24 @@ class Contact:
 
     def remove_contact(self, list_class):
 
-        print('Are you sure you want to remove this contact?')
-        user_input = input('Type "Yes" if this is correct: ').lower()
-        match user_input:
-            case 'yes':
-                list_class.contact_list.remove(self)
+        '''
+        This method first checks what type of list is passed in, whether it is a contact_list,
+        favorite or a group
+        '''
+        list_type = type(list_class).__name__
 
-                for group in list_class.get_groups():
-                    if self in group.contact_list:
-                        group.contact_list.remove(self)
+        match list_type:
+            case 'ContactList':
+                print('Are you sure you want to remove this contact?')
+                self.__remove_contact_from_contact_list(list_class)
+            case 'Group':
+                print('Are you sure you want to remove this contact from this group?')
+                self.__remove_contact_from_group(list_class)
+            case 'Favorites':
+                print('Are you sure you want to remove this contact from your Favorites?')
+                self.__remove_contact_from_favorites(list_class)
 
-                json_object = helper.toJSON(list_class.contact_list)
-                with open("./data/contacts.json", "w") as file:
-                    file.write(json_object)
 
-                print('Contact Removed')
-                return
-            case _:
-                return
 
     def display_contact(self, contact_list):
         '''
@@ -190,6 +189,49 @@ class Contact:
                 return
             case _:
                 return
+
+#-------------------------- Private Methods --------------------------------]
+
+    def __remove_contact_from_contact_list(self, list_class):
+        user_input = input('Type "Yes" if this is correct: ').lower()
+        match user_input:
+            case 'yes':
+                list_class.contact_list.remove(self)
+
+
+                for group in list_class.get_groups():
+                    if self in group.contact_list:
+                        group.contact_list.remove(self)
+
+                del(self)
+                print('Contact Removed')
+                return
+            case _:
+                return
+    
+    def __remove_contact_from_favorites(self, list_class):
+        user_input = input('Type "Yes" if this is correct: ').lower()
+        match user_input:
+            case 'yes':
+                list_class.contact_list.remove(self)
+
+                print('Contact Removed From Favorites')
+                return
+            case _:
+                return
+    
+    def __remove_contact_from_group(self, list_class):
+        user_input = input('Type "Yes" if this is correct: ').lower()
+        match user_input:
+            case 'yes':
+                list_class.contact_list.remove(self)
+                self.__group_id = None
+                print('Contact Removed From Group')
+                return
+            case _:
+                return
+    
+    
 
 
 

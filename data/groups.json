@@ -1,37 +1,24 @@
 [
     {
-        "contact_list": [],
+        "contact_list": [
+            {
+                "_Contact__contact_details": {
+                    "first_name": "percy",
+                    "second_name": "cloony",
+                    "phone": "01993 200547",
+                    "email": "chris@chris.com",
+                    "house_name_or_number": "198",
+                    "address_line_1": "wadards meadow",
+                    "address_line_2": "witney",
+                    "postcode": "ox28 3tz"
+                },
+                "_Contact__group_id": "groupd53fa8b3-85a6-41b8-9b6b-0d173c0dec8b",
+                "_Contact__contacted_counter": 0
+            }
+        ],
         "sort_by_identifier": "second_name",
-        "_Group__group_name": "Friends",
-        "_Group__group_description": "Group of close friends",
-        "_Group__group_id": "group-1234e43"
-    },
-    {
-        "contact_list": [],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "Work",
-        "_Group__group_description": "Work Contacts",
-        "_Group__group_id": "group-1234e46"
-    },
-    {
-        "contact_list": [],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "Family",
-        "_Group__group_description": "Family contacts",
-        "_Group__group_id": "group-1234e47"
-    },
-    {
-        "contact_list": [],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "sfsdfs",
-        "_Group__group_description": "sdf",
-        "_Group__group_id": "group02e572a9-5ccf-44b5-9870-46fc485ec1ef"
-    },
-    {
-        "contact_list": [],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "tester",
-        "_Group__group_description": "dfsdf",
-        "_Group__group_id": "group27ae3487-6fc7-4b7b-baeb-6cabe897f26c"
+        "_Group__group_name": "close mates",
+        "_Group__group_description": "Something or other",
+        "_Group__group_id": "groupd53fa8b3-85a6-41b8-9b6b-0d173c0dec8b"
     }
 ]

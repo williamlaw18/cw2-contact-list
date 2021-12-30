@@ -5,18 +5,22 @@ from classes.group import Group
 from classes.contact_list import ContactList
 from classes.favorites import Favorites
 from classes.settings import Settings
-import helper_methods.helper as helper
+from classes.import_export import ImportExport
+from classes.save import Save
 
 class ContactBook:
 	def __init__(self):
+		self.__save = Save()
 		self.__contact_list = ContactList()
 		self.__favorite_list = Favorites()
 		self.__settings = Settings(self.__contact_list, self.__favorite_list)
-		self.__read_from_json()
+		self.__import_export = ImportExport(self.__contact_list)
+		self.__import_export.read_from_json()
 		self.__run_program_loop()
 			
 	   
 	def __run_program_loop(self):
+		
 	
 		'''
 		This method runs the main program loop. This waits on the user input, which is then entered into
@@ -25,6 +29,10 @@ class ContactBook:
 		'''
 
 		while True:
+
+			#Uses the save class to take a snapshot of the current state of contacts/groups
+
+			self.__save.create_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
 			
 			print('Enter the number of the feature you want, or press 1 to see the menu')
 			user_input = input()
@@ -80,45 +88,10 @@ class ContactBook:
 
 	def __show_groups(self):
 		Group.static_display_and_add_groups(self.__contact_list)
-		
-
-	def __read_from_json(self):
-
-		'''
-		This method opens our contactList.json file, using the imported json library, it
-		parses a list from the file, which contains two dictionaries: groups and conttacts
-		from these, using the create_group_from_json method and the create_contact_from_json method
-		these classes are instansiated and stored in the correct place.
-		'''
-		   
-		with open("./data/groups.json", "r") as jsonPathGroup:
-			jsonPathFile = json.load(jsonPathGroup)
-			imported_group_list = jsonPathFile
-
-			for json_group in imported_group_list:
-				imported_group = Group()
-				imported_group.create_group_from_json(json_group)
-				self.__contact_list.append_groups(imported_group)
-			jsonPathGroup.close()   
-
-
-		with open("./data/contacts.json", "r") as jsonPath:
-			jsonFile = json.load(jsonPath)
-			imported_contact_list = jsonFile
-			print(self.__contact_list.get_groups())
-					
-			for json_contact in imported_contact_list:
-				imported_contact = Contact()
-				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'], json_contact['_Contact__group_id'])
-				
-				self.__contact_list.append_contact(imported_contact)
-				for existing_group in self.__contact_list.get_groups():
-					existing_group.append_contact_from_json(imported_contact)
-			jsonPath.close()    
-
-						
+							
 	def __search_contact_list(self):
 		self.__contact_list.search()
+
 	def __show_contact_list(self):
 		self.__contact_list.display_contacts()
 
@@ -130,7 +103,16 @@ class ContactBook:
 		self.__settings.show_settings()
 	
 	def __loop_reset_logic(self):
+		'''
+		This logic runs every time the program loops, it detects if the favorites need to be updated
+		and wether there are any changes that need to be saved to JSON.
+		'''
+
 		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
+		need_to_save = self.__save.compare_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
+		if(need_to_save):
+			self.__import_export.save_to_json()
+			
 
 
 # Settings logic:

@@ -64,6 +64,8 @@ class ListBase:
 					if(user_input.lower() == 's'):
 						self.search()
 						break
+					elif(user_input.lower()== 'x'):
+						break
 					else:
 						user_selection = int(user_input) -1
 						chosen_contact = self.contact_list[user_selection]
@@ -179,13 +181,6 @@ class ListBase:
 				print('No contact exists at that selection, please try again')
 
 
-            
-
-	def delete_contact(self, contact):
-		'''
-		Deletes Contact
-		'''
-      
 	def clear_all_contacts(self):
 		self.contact_list = []
 
