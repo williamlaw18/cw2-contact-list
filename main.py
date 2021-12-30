@@ -4,12 +4,14 @@ from classes.contact import Contact
 from classes.group import Group
 from classes.contact_list import ContactList
 from classes.favorites import Favorites
+from classes.settings import Settings
 import helper_methods.helper as helper
 
 class ContactBook:
 	def __init__(self):
 		self.__contact_list = ContactList()
 		self.__favorite_list = Favorites()
+		self.__settings = Settings(self.__contact_list, self.__favorite_list)
 		self.__read_from_json()
 		self.__run_program_loop()
 			
@@ -41,6 +43,8 @@ class ContactBook:
 				case '6':
 					self.__show_favorites()	
 				case '7':
+					self.__show_settings()
+				case '8':
 					print('Quiting program, Goodbye!')
 					break
 				case _:
@@ -55,7 +59,7 @@ class ContactBook:
 		'''
 		This method doesn't take any arguments, it just shows the menu as a printed string
 		'''
-		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Show Favorites\n7. Quit')
+		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Show Favorites\n7. Settings\n8. Quit')
 	   
 
 	def __create_contact(self):
@@ -87,19 +91,6 @@ class ContactBook:
 		these classes are instansiated and stored in the correct place.
 		'''
 		   
-		with open("./data/contacts.json", "r") as jsonPath:
-			jsonFile = json.load(jsonPath)
-			imported_contact_list = jsonFile
-					
-			for json_contact in imported_contact_list:
-				imported_contact = Contact()
-				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'])
-				self.__contact_list.append_contact(imported_contact)
-				for existing_group in self.__contact_list.get_groups():
-					existing_group.append_contact_from_json(imported_contact)
-			jsonPath.close()    
-
-
 		with open("./data/groups.json", "r") as jsonPathGroup:
 			jsonPathFile = json.load(jsonPathGroup)
 			imported_group_list = jsonPathFile
@@ -109,6 +100,22 @@ class ContactBook:
 				imported_group.create_group_from_json(json_group)
 				self.__contact_list.append_groups(imported_group)
 			jsonPathGroup.close()   
+
+
+		with open("./data/contacts.json", "r") as jsonPath:
+			jsonFile = json.load(jsonPath)
+			imported_contact_list = jsonFile
+			print(self.__contact_list.get_groups())
+					
+			for json_contact in imported_contact_list:
+				imported_contact = Contact()
+				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'], json_contact['_Contact__group_id'])
+				
+				self.__contact_list.append_contact(imported_contact)
+				for existing_group in self.__contact_list.get_groups():
+					existing_group.append_contact_from_json(imported_contact)
+			jsonPath.close()    
+
 						
 	def __search_contact_list(self):
 		self.__contact_list.search()
@@ -118,9 +125,16 @@ class ContactBook:
 	def __show_favorites(self):
 		print('Your Favorites:')
 		self.__favorite_list.display_contacts()
+
+	def __show_settings(self):
+		self.__settings.show_settings()
 	
 	def __loop_reset_logic(self):
 		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
+
+
+# Settings logic:
+
 
 
 if __name__ == '__main__':
