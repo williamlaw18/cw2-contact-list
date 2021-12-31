@@ -5,11 +5,12 @@ class Settings:
 	def __init__(self, contact_list, favorite_list):
 		self.__contact_list = contact_list
 		self.__favorite_list = favorite_list
-		pass
 
+
+#-------------------------- Public Methods --------------------------------
 
 	def show_settings(self):
-		print('1. Contact Settings \n2. Favourite Settings \n3. Return to menu')
+		print("1. Contact Settings \n2. Favourite Settings \n3. Return to Menu")
 		user_input = input()
 		while True:
 			match user_input:
@@ -22,9 +23,10 @@ class Settings:
 					case '3':
 						break
 
+#-------------------------- Private Methods --------------------------------
 
 	def __show_settings_contacts(self):
-			print('1. Clear All Contacts \n2. Sort By \n3. Return to menu')
+			print("1. Clear All Contacts \n2. Sort By \n3. Return to menu")
 			user_input = input()
 			while True:
 				match user_input:
@@ -39,7 +41,7 @@ class Settings:
 
 
 	def __show_settings_favourites(self):
-		print('1. Set Favourite Threshold \n2. Clear Favourites \n3. Return to menu')
+		print("1. Set Favourite Threshold \n2. Clear Favourites \n3. Return to menu")
 		user_input = input()
 		while True:
 			match user_input:
@@ -55,17 +57,17 @@ class Settings:
 
 	def __settings_clear_contacts(self, list):
 		list.clear_all_contacts()
-		print(f'{helper.format_title(list.get_name())} successfully cleared')
+		print(f"{helper.format_title(list.get_name())} successfully cleared.")
   
 
 	def __settings_favourites_threshold(self):
-		print('please enter how many times a contact is contacted before being listed as a favourite compared to the average')
-		print('The current threshold is ' +  str(self.__favorite_list.get_threshold()))
+		print("Please enter how many times a contact is contacted before being listed as a favourite compared to the average")
+		print(f"The current threshold is: {str(self.__favorite_list.get_threshold())}.")
 		while True:
 			try:
 				user_input = int(input())
 				self.__favorite_list.set_threshold(user_input)
-				print('Threshold successfully changed to ' + str(user_input))
+				print(f"Threshold successfully changed to: {str(user_input)}.")
 				break
 			except ValueError:
 				print('Please enter a valid number')
@@ -75,15 +77,17 @@ class Settings:
 			sort_by_fields = ['first_name','second_name', 'postcode','email']
 			for i,field in enumerate(sort_by_fields): #gives index of item in the list
 				field_number = str(i + 1)
-				print(field_number + ': ' + helper.format_title(field,True))
-			print('enter the number of the fields you would like to sort by')
+				print(f"{field_number}: {helper.format_title(field,True)}")
+			print("Please enter the number of the field you would like to sort by")
    
 			while True:
 				try:
 					userinput = int(input()) - 1
 					chosen_field = sort_by_fields[userinput]
 					self.__contact_list.sort_by_identifier = chosen_field
-					print('now sorting by ' + helper.format_title(chosen_field))
+					print(f"Now sorting by: {helper.format_title(chosen_field)}")
 					break
-				except:
-					print('invalid input, please try again')
+				except ValueError:
+					print("Please enter a valid number")
+				except IndexError:
+					print('No field exists at that selection, please try again.')

@@ -1,17 +1,17 @@
 [
     {
         "_Contact__contact_details": {
-            "first_name": "chris",
+            "first_name": "christopher",
             "second_name": "kneller",
-            "phone": "01993 200547",
-            "email": "chris@chris.com",
-            "house_name_or_number": "198 wadards meadow",
-            "address_line_1": "witney",
-            "address_line_2": "oxfordshire",
+            "phone": "01993200547",
+            "email": "chris.kneller@yahoo.co.uk",
+            "house_name_or_number": "198",
+            "address_line_1": "wadards meadow",
+            "address_line_2": "witney",
             "postcode": "ox283tz"
         },
         "_Contact__group_ids": [
-            "group00033c98-d0bb-442c-9582-0aef7ba5a935"
+            "groupf5fc37c6-0036-4d2c-9b6b-c4e38c72b236"
         ],
         "_Contact__contacted_counter": 0
     }

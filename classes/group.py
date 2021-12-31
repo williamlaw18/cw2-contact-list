@@ -22,6 +22,46 @@ class Group(ListBase):
 		
 
 
+#-------------------------- Public Methods --------------------------------
+
+	def append_contact_from_json(self, contact):
+
+		'''
+		This method is called from the __read_from_json method on the main class. The aformentioned 
+		method loops through the list of groups, and calls this method passing the json-generated 
+		contact to it. If the id on the contact matches the group id, the contact is appended to 
+		the list using the append_contact method from the parent class.
+		'''
+
+		for id in contact.get_group_ids():
+			if id == self.get_group_id():
+				self.append_contact(contact)
+
+
+	def create_group_from_user_input(self):
+
+		''' This method takes inputs from user and passes it to the __create_group method '''
+
+		group_name = input('Please enter group name: ').strip().lower()
+		group_description = input('Enter group description: ')
+		self.__create_group(group_name, group_description)
+	
+	def create_group_from_json(self, group):
+		'''
+		This method takes the group passed from __read_from_json method on the main class and 
+		runs the __create_group method.
+		'''
+		self.__create_group(group['_Group__group_name'], group['_Group__group_description'], group['_Group__group_id'])
+
+	def display_group(self):
+		'''
+		Prints out the list of contacts in the group by calling the display_contacts method
+		on the parent class.
+		'''
+
+		print(f'--------- {self.__group_name} --------- \n {self.__group_description}' )
+		self.display_contacts()
+
 
 #-------------------------- Private Methods --------------------------------
 
@@ -45,49 +85,6 @@ class Group(ListBase):
 			self.__group_id = group_id	
 
 
-
-
-#-------------------------- Public Methods --------------------------------
-
-	def append_contact_from_json(self, contact):
-
-		'''
-		This method is called from the __read_from_json method on the main class. The aformentioned method loops through the 
-		list of groups, and calls this method passing the json-generated contact to it. If the id on the contact matches
-		the group id, the contact is appended to the list using the append_contact method from the parent class.
-		'''
-
-		for id in contact.get_group_ids():
-			if id == self.get_group_id():
-				self.append_contact(contact)
-
-
-	def create_group_from_user_input(self):
-
-		'''
-		Pretty much self explanitory. takes inputs from user and passes it to the __create_group method
-		
-		'''
-
-		group_name = input('Please enter group name: ').strip().lower()
-		group_description = input('Enter group description: ')
-		self.__create_group(group_name, group_description)
-	
-	def create_group_from_json(self, group):
-		'''
-		takes group passed from __read_from_json method on the main class and runs the __create_group method
-		'''
-		self.__create_group(group['_Group__group_name'], group['_Group__group_description'], group['_Group__group_id'])
-
-	def display_group(self):
-		'''
-		Prints out the list of contacts in the group by calling the display_contacts method on the parent class
-		'''
-
-		print(f'--------- {self.__group_name} --------- \n {self.__group_description}' )
-		self.display_contacts()
-
-
 #-------------------------- Getters --------------------------------
 
 	def get_name(self):
@@ -106,17 +103,18 @@ class Group(ListBase):
 	def static_add_to_group(contact, contact_list):
 		
 		'''
-		When called from the __create_contact method, this allows the user to choose if they want to add the new 
-		contact to a group.
+		When called from the __create_contact method, this allows the user to choose if they want to 
+		add the new contact to a group.
 		'''
 
+
 		contact_name = helper.format_values(contact.get_contact_name(), 'name')
-		print(f'Enter Y to add {contact_name} to a group, or any other key to continue')
+		print(f"Enter 'Y' to add {contact_name} to a group, or 'X' to return to the main menu.")
 		user_input = input()
 		if(user_input.lower() == 'y'):
 			
 			group_list = contact_list.list_groups()
-			print('Select the number of the group you want to add to, or press A to create a new group')
+			print("Select the number of the group you want to add to, or enter 'A' to add a new group.")
 			while True:
 				try:
 					user_input = input()
@@ -132,12 +130,12 @@ class Group(ListBase):
 						selected_group = group_list[user_selection]
 						contact.set_group_id(selected_group.get_group_id())
 						group_list[user_selection].append_contact(contact)
-						print('Succesfully added to group')
+						print('Succesfully added to group.')
 						break
 				except ValueError:
-					print('Please enter a valid number, or press A to make a new group')
+					print("Please enter a valid number, or enter 'A' to add a new group.")
 				except IndexError:
-					print('No group exists at that selection, please try again')
+					print('No group exists at that selection, please try again.')
 
 		else:
 			return 
@@ -146,12 +144,12 @@ class Group(ListBase):
 	def static_display_and_add_groups(contact_list):
 		'''
 		This method is called directly from the menu, it lists all the groups, and gives the option to either add
-		a new group (by calling create_group_from_user_input) or viewing the contents of an existing one by selecting
-		a number
+		a new group (by calling create_group_from_user_input) or to view the contents of an existing one by selecting
+		a number.
 		
 		'''
 		group_list = contact_list.list_groups()
-		print('Enter the number of the group you would like to view, or press A to add a new one')
+		print("Enter the number of the group you would like to view, or enter 'A' to add a new one.")
 		while True:
 			try:
 				user_input = input()
@@ -159,16 +157,12 @@ class Group(ListBase):
 					new_group = Group()
 					new_group.create_group_from_user_input()
 					contact_list.append_groups(new_group)
-
-					json_object = helper.toJSON(contact_list.get_groups())
-					with open("./data/groups.json", "w") as file:
-						file.write(json_object)
 					break
 				else:
 					user_selection = int(user_input) - 1
 					group_list[user_selection].display_group()
 					break
-			except ValueError as e:
-				print('Please enter a valid number, or press A to add a new group')
+			except ValueError:
+				print("Please enter a valid number, or 'A' to add a new group.")
 			except IndexError:
-				print('No group exists at that selection, please try again')
+				print('No group exists at that selection, please try again.')

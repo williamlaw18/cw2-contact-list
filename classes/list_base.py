@@ -15,31 +15,6 @@ class ListBase:
 		self.contact_list = []
 		self.sort_by_identifier = 'second_name'
 
-#-------------------------- Private Methods --------------------------------
-
-	def __sort_key(self, element):
-		'''
-		This method stores the first letter of the field value of what we want to sort by in 
-		contact_field_value and returns the index of the alphebet of that particular letter,
-		to be used in the search method
-	
-		'''
-
-		contact_field_value = element.get_contact_details()[self.sort_by_identifier][0]
-		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
-		
-		return contact_field_string_index 
-
-
-	def __sort_contacts(self):
-
-		'''
-		This method sorts the contact list into alphabetical order 
-		by using a key function (__sort_key) that returns the name of the contact and passing
-		this to the inbuilt python sort method. This will be run everytime a contact is added
-		'''
-		self.contact_list.sort(key = self.__sort_key)
-
 
 #-------------------------- Public Methods --------------------------------
 
@@ -48,13 +23,13 @@ class ListBase:
 		Prints contacts, allows you to be able to select contact to run the edit method on
 		'''
 		if len(self.contact_list) == 0:
-			print ('No Contacts Found')
+			print ('No Contacts Found.')
 		else:
             
 			for i,contact in enumerate(self.contact_list):
 				contact_name = helper.format_values(contact.get_contact_name(), 'name')
 				print(f'{i + 1}: {contact_name}')
-			print("Enter the number of the contact you want to view/edit, or press s to search ")    
+			print("Enter the number of the contact you want to view/edit, or 'S' to search.")    
 			while True:
 				try:
 					user_input = input()
@@ -69,9 +44,9 @@ class ListBase:
 						chosen_contact.display_contact(self)
 						break
 				except ValueError:
-					print('Please enter a valid number, or press x to exit')
+					print("Please enter a valid number, or 'X' to go back to the main menu.")
 				except IndexError:
-					print('No contact exists at that selection, please try again')
+					print("No contact exists at that selection, please try again.")
 		
 
 	def append_contact(self, contact):
@@ -86,8 +61,8 @@ class ListBase:
 		results = []
 		while True:
 			#print and user input to display options that the search functionailty provides
-			print("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. House Name or Number\n6. Address Line 1\n7. Address Line 2\n8. Postcode\nOr press x to exit back to the home screen")
-			search_attribute_input = input("Enter the number of the aspect you would like to search by: ").lower()
+			print("1. First Name\n2. Last Name\n3. Phone Number\n4. Email\n5. House Name or Number\n6. Address Line 1\n7. Address Line 2\n8. Postcode\n")
+			search_attribute_input = input("Enter the number of the aspect you would like to search by, or 'X' to return to the main menu: ").lower()
 			'''
 			this statement converts the user friendly input (numbers) into the "search attributes" that
 			are required to interact with the list imported from the json file that contain
@@ -122,7 +97,7 @@ class ListBase:
 				case "x":
 					return
 				case _:
-					print("Invalid input, pleae enter number 1-8")
+					print("Invalid input, pleae enter numbers 1-8.")
 
 		#accept the search term for the desired attribute, and then remove any spaces from either end, or capitilisation
 		UXattribute = helper.format_title(search_attribute)
@@ -155,11 +130,11 @@ class ListBase:
 			print("\n--------------------------------\n")
 
 		if len(results) == 0:
-			print("No contacts found for search term", search_term, "with aspect", UXattribute, "Please try again or press x to exit")
+			print(f"No contacts found for search term {search_term} with aspect {UXattribute}. Please try again or enter 'X' to go back to the main menu.")
 			self.search()
 			return
 		else:
-			print('Enter the number of the contact you would like to view, or press x to exit')
+			print("Enter the number of the contact you would like to view, or 'X' to go back to the main menu.")
 
 		while True:
 			try:
@@ -172,11 +147,35 @@ class ListBase:
 					chosen_contact.display_contact(self.contact_list)
 					break
 			except ValueError:
-				print('Please enter a valid number, or press x to exit')
+				print("Please enter a valid number, or 'X' to go back to the main menu.")
 			except IndexError:
-				print('No contact exists at that selection, please try again')
+				print('No contact exists at that selection, please try again.')
 
 
 	def clear_all_contacts(self):
 		self.contact_list = []
 
+#-------------------------- Private Methods --------------------------------
+
+	def __sort_key(self, element):
+		'''
+		This method stores the first letter of the field value of what we want to sort by in 
+		contact_field_value and returns the index of the alphebet of that particular letter,
+		to be used in the search method
+	
+		'''
+
+		contact_field_value = element.get_contact_details()[self.sort_by_identifier][0]
+		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
+		
+		return contact_field_string_index 
+
+
+	def __sort_contacts(self):
+
+		'''
+		This method sorts the contact list into alphabetical order 
+		by using a key function (__sort_key) that returns the name of the contact and passing
+		this to the inbuilt python sort method. This will be run everytime a contact is added
+		'''
+		self.contact_list.sort(key = self.__sort_key)
