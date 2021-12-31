@@ -15,7 +15,6 @@ class ListBase:
 		self.contact_list = []
 		self.sort_by_identifier = 'second_name'
 
-
 #-------------------------- Private Methods --------------------------------
 
 	def __sort_key(self, element):
@@ -25,12 +24,12 @@ class ListBase:
 		to be used in the search method
 	
 		'''
-	
 
 		contact_field_value = element.get_contact_details()[self.sort_by_identifier][0]
 		contact_field_string_index = string.ascii_lowercase.index(contact_field_value)
 		
 		return contact_field_string_index 
+
 
 	def __sort_contacts(self):
 
@@ -40,8 +39,6 @@ class ListBase:
 		this to the inbuilt python sort method. This will be run everytime a contact is added
 		'''
 		self.contact_list.sort(key = self.__sort_key)
-	
-
 
 
 #-------------------------- Public Methods --------------------------------
@@ -64,20 +61,23 @@ class ListBase:
 					if(user_input.lower() == 's'):
 						self.search()
 						break
+					elif(user_input.lower()== 'x'):
+						break
 					else:
 						user_selection = int(user_input) -1
 						chosen_contact = self.contact_list[user_selection]
-						chosen_contact.display_contact(self.contact_list)
+						chosen_contact.display_contact(self)
 						break
-				except:
-					print('input not recognised')
-			
-            
-            
+				except ValueError:
+					print('Please enter a valid number, or press x to exit')
+				except IndexError:
+					print('No contact exists at that selection, please try again')
+		
 
 	def append_contact(self, contact):
 		self.contact_list.append(contact)
 		self.__sort_contacts()
+		
 
 	def search(self):
 		'''
@@ -171,15 +171,12 @@ class ListBase:
 					chosen_contact = results[user_selection]
 					chosen_contact.display_contact(self.contact_list)
 					break
-			except:
-				print('Search selection not recognised, please try again')
+			except ValueError:
+				print('Please enter a valid number, or press x to exit')
+			except IndexError:
+				print('No contact exists at that selection, please try again')
 
 
-            
-
-	def delete_contact(self, contact):
-		'''
-		Deletes Contact
-		'''
-      
+	def clear_all_contacts(self):
+		self.contact_list = []
 

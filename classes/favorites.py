@@ -4,11 +4,13 @@ from classes.list_base import ListBase
 class Favorites(ListBase):
     def __init__(self):
         super().__init__()
-        self.name = 'Favorites'
-        self.description = 'List of contacts you have contacted the most'
+        self.__threshold = 2
+        self.__name = 'Favorites'
+        self.__description = 'List of contacts you have contacted the most'
 
     def __sort_contact_key(self, element):
         return element.get_contacted_counter()
+
     def __sort_contacts(self):
         
         #This methods sorts contacts by how many times they have been contacted 
@@ -31,19 +33,24 @@ class Favorites(ListBase):
         '''
 
         sum = 0
-        threshold = 2
         for contact in contact_list:
             sum += contact.get_contacted_counter()
         
-        average_contact_amount = sum / len(contact_list)
+        if len(contact_list) > 0 :
+            average_contact_amount = sum / len(contact_list)
 
-        for contact in contact_list:
-            if contact.get_contacted_counter() > average_contact_amount + threshold:
-                self.add_to_favorites(contact)
+            for contact in contact_list:
+                if contact.get_contacted_counter() > average_contact_amount + self.__threshold:
+                    self.add_to_favorites(contact)
 
+    def set_threshold(self, threshold):
+        self.__threshold = threshold
 
+    def get_threshold(self):
+        return self.__threshold
 
-
+    def get_name(self):
+        return self.__name
 
     
 
