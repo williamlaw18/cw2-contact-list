@@ -43,9 +43,8 @@ class ListBase:
 						chosen_contact = self.contact_list[user_selection]
 						chosen_contact.display_contact(self)
 						break
-				except ValueError as e:
+				except ValueError:
 					print("Please enter a valid number, or 'X' to go back to the main menu.")
-					print(e)
 				except IndexError:
 					print("No contact exists at that selection, please try again.")
 		
