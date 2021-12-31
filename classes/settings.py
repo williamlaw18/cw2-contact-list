@@ -87,5 +87,7 @@ class Settings:
 					self.__contact_list.sort_by_identifier = chosen_field
 					print(f"Now sorting by: {helper.format_title(chosen_field)}")
 					break
-				except:
-					print("invalid input, please try again")
+				except ValueError:
+					print("Please enter a valid number")
+				except IndexError:
+					print('No field exists at that selection, please try again.')

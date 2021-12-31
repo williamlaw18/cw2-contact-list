@@ -162,7 +162,7 @@ class Group(ListBase):
 					user_selection = int(user_input) - 1
 					group_list[user_selection].display_group()
 					break
-			except ValueError as e:
+			except ValueError:
 				print("Please enter a valid number, or 'A' to add a new group.")
 			except IndexError:
 				print('No group exists at that selection, please try again.')
