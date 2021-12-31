@@ -10,7 +10,9 @@
             "address_line_2": "witney",
             "postcode": "ox283tz"
         },
-        "_Contact__group_ids": [],
+        "_Contact__group_ids": [
+            "groupf5fc37c6-0036-4d2c-9b6b-c4e38c72b236"
+        ],
         "_Contact__contacted_counter": 0
     }
 ]
