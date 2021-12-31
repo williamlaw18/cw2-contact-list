@@ -1,33 +1,7 @@
 [
     {
-        "contact_list": [],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "some group",
-        "_Group__group_description": "dunno",
-        "_Group__group_id": "group973d2e58-f42e-4b5d-a6ba-480141cf82fc"
-    },
-    {
-        "contact_list": [
-            {
-                "_Contact__contact_details": {
-                    "first_name": "chris",
-                    "second_name": "kneller",
-                    "phone": "01993 200547",
-                    "email": "chris@chris.com",
-                    "house_name_or_number": "198 wadards meadow",
-                    "address_line_1": "witney",
-                    "address_line_2": "oxfordshire",
-                    "postcode": "ox283tz"
-                },
-                "_Contact__group_ids": [
-                    "group00033c98-d0bb-442c-9582-0aef7ba5a935"
-                ],
-                "_Contact__contacted_counter": 0
-            }
-        ],
-        "sort_by_identifier": "second_name",
-        "_Group__group_name": "new group",
-        "_Group__group_description": "Somthing or other",
-        "_Group__group_id": "group00033c98-d0bb-442c-9582-0aef7ba5a935"
+        "_Group__group_name": "close friends",
+        "_Group__group_description": "Group of close friends.",
+        "_Group__group_id": "groupf5fc37c6-0036-4d2c-9b6b-c4e38c72b236"
     }
 ]

@@ -36,7 +36,7 @@ class ContactBook:
 
 			self.__save.create_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
 			
-			print('Enter the number of the feature you want, or press 1 to see the menu')
+			print("Please enter the number of the feature you want, or '1' to see the menu.")
 			user_input = input()
 
 			match user_input:
@@ -58,7 +58,7 @@ class ContactBook:
 					print('Quiting program, Goodbye!')
 					break
 				case _:
-					print('Sorry, input not recognised ')
+					print('Sorry, input not recognised, please try again.')
 			
 			self.__loop_reset_logic()
 

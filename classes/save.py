@@ -4,14 +4,31 @@ import copy
 
 
 class Save:
+    '''
+    This class holds the logic required to know if a save to json is required.
+    The create_snapshot method takes a picture of the current data, then the 
+    compare_data method sees if there are any changes, if there are, then True
+    is returned which signals the main class to save contacts and groups to json.
+    
+    '''
+
+
     def __init__(self):
         self.previous_state = {
             "group_list": [],
             "contact_list":[]
         }
 
+#-------------------------- Public Methods --------------------------------
 
     def create_snapshot(self, contact_list, group_list):
+        '''
+        This method accepts the contact and group list, uses the 
+        format_for_comparison method to deep-copy the data which is 
+        then stored in both the previous_group_list and previous_contact_list.
+        '''
+
+
         previous_group_list = []
         previous_contact_list = []
 
@@ -47,11 +64,13 @@ class Save:
         if is_group_equal and is_contact_equal:
             return False
         else:
-            print('Saving Changes')
+            print('Saving Changes.')
             return True
        
+#-------------------------- Private Methods --------------------------------
 
     def __format_for_comparison(self, item, contact_flag):
+        '''Formats data for comparison'''
 
         formated_dictionary = {}
 

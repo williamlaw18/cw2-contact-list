@@ -9,12 +9,13 @@ class ImportExport:
 		self.__contacts_path = './data/contacts.json'
 		self.__groups_path = './data/groups.json'
 
+#-------------------------- Public Methods --------------------------------
 
 	def read_from_json(self):
 
 		'''
 		This method opens our contactList.json file, using the imported json library, it
-		parses a list from the file, which contains two dictionaries: groups and conttacts
+		parses a list from the file, which contains two dictionaries: groups and contacts
 		from these, using the create_group_from_json method and the create_contact_from_json method
 		these classes are instansiated and stored in the correct place.
 		'''
@@ -37,19 +38,29 @@ class ImportExport:
 			for json_contact in imported_contact_list:
 				imported_contact = Contact()
 				imported_contact.create_contact_from_json(json_contact['_Contact__contact_details'], json_contact['_Contact__group_ids'])
-				
 				self.__contact_list.append_contact(imported_contact)
+
 				for existing_group in self.__contact_list.get_groups():
 					existing_group.append_contact_from_json(imported_contact)
 			jsonPath.close()    
 
 
 	def save(self):
+		'''
+		Passes the groups and contacts contained on the contact_list class to
+		the privite export_to_json method along with the correct path
+		'''
 		self.__export_to_json(self.__contacts_path, self.__contact_list.get_contacts())
-		self.__export_to_json(self.__groups_path, self.__contact_list.get_groups())
-	
+		self.__export_to_json(self.__groups_path, self.__contact_list.get_groups_for_json())
 
+#-------------------------- Private Methods --------------------------------
+	
 	def __export_to_json(self, path, object):
+		'''
+		Exports the contacts or the groups passed to it to
+		a json file located on the path param.
+		'''
+
 		json_object = self.__to_JSON(object)
 		with open(path, "w") as file:
 			file.write(json_object)
