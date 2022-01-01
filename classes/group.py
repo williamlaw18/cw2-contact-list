@@ -69,7 +69,7 @@ class Group(ListBase):
 
 		'''
 		This method fills in the class fields, based on the arguments passed to it.
-		Somthing to look at is the group_id argument. if we are creating the group from
+		Somthing to look at is the group_id argument. If we are creating the group from
 		json, a id would allready be provided. We want to assign that normally, howver, if
 		a group is created from scratch, we want it to be defaulted as none, so the method
 		can generate a unique one by using the uuid library. 

@@ -13,7 +13,6 @@ class Contact:
 	creating, removing, displaying and editing each contact.  The details are 
 	stored in the __contact_details dictionary. 
 	
-	
 	'''
 
 	def __init__(self):
