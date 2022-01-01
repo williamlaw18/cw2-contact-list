@@ -3,7 +3,7 @@ import json
 def format_title(text, capitalised = False):
     '''
     This function takes text with underscores and removes them. It accepts a 'capitalised'
-    paramaeter as boolean. It is defaulted to false, however if it is true, it returns the
+    paramaeter as boolean.  It is defaulted to false, however if it is true, it returns the
     text capitalised.
     
     '''
