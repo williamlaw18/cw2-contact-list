@@ -34,7 +34,8 @@ class ContactBook:
 
 			#Uses the save class to take a snapshot of the current state of contacts/groups
 
-			self.__save.create_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
+			self.__save.create_snapshot(self.__contact_list.get_contacts(), 
+										self.__contact_list.get_groups())
 			
 			print("Please enter the number of the feature you want, or '1' to see the menu.")
 			user_input = input()
@@ -112,7 +113,9 @@ class ContactBook:
 		'''
 
 		self.__favorite_list.calculate_favorites(self.__contact_list.get_contacts())
-		need_to_save = self.__save.compare_snapshot(self.__contact_list.get_contacts(), self.__contact_list.get_groups())
+
+		need_to_save = self.__save.compare_snapshot(self.__contact_list.get_contacts(), 
+													self.__contact_list.get_groups())
 		if(need_to_save):
 			self.__import_export.save()
 			
