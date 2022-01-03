@@ -54,8 +54,12 @@ class ContactBook:
 				case '6':
 					self.__show_favorites()	
 				case '7':
-					self.__show_settings()
+					self.__import_export.export_to_csv()
 				case '8':
+					self.__import_export.import_from_csv()
+				case '9':
+					self.__show_settings()
+				case '10':
 					print('Quiting program, Goodbye!')
 					break
 				case _:
@@ -69,7 +73,7 @@ class ContactBook:
 		'''
 		This method doesn't take any arguments, it just shows the menu as a printed string
 		'''
-		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Show Favorites\n7. Settings\n8. Quit')
+		print('1. Menu\n2. Create Contact\n3. Show Contacts\n4. Search Contacts\n5. Groups\n6. Show Favorites\n7. Export Contacts\n8. Import Contacts\n9. Settings\n10. Quit')
 	   
 
 	def __create_contact(self):
