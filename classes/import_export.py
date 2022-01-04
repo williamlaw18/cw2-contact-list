@@ -64,34 +64,34 @@ class ImportExport:
 			with open(target_path, "r") as imports:
 				imports = list(reader(imports))
 			csv_dict = {
-			    'first_name': " ",
-			    'second_name': " ",
-			    'phone': " ",
-			    'email' : " ",
-			    'house_name_or_number': " ",
-			    'address_line_1': " ",
-			    'address_line_2': " ",
-			    'postcode': " ",
+				'first_name': " ",
+				'second_name': " ",
+				'phone': " ",
+				'email' : " ",
+				'house_name_or_number': " ",
+				'address_line_1': " ",
+				'address_line_2': " ",
+				'postcode': " ",
 			}
 			for i in range(1,len(imports)):
 				for j in range(0,len(imports[0])):
 					if imports[i][j] == "":
 						continue
 					match imports[0][j].lower():
-					       case "first name": csv_dict["first_name"] = imports[i][j].lower()
-					       case "last name": csv_dict["second_name"] = imports[i][j].lower()
-					       case "primary phone": csv_dict["phone"] = imports[i][j].lower()
-					       case "e-mail address": csv_dict["email"] = imports[i][j].lower()
-					       case "home address": csv_dict["house_name_or_number"] = imports[i][j].lower()
-					       case "home street": csv_dict["address_line_1"] = imports[i][j].lower()
-					       case "home street 2": csv_dict["address_line_2"] = imports[i][j].lower()
-					       case "home postal code": csv_dict["postcode"] = imports[i][j].lower()
-					       case _: pass
-					       
+							case "first name": csv_dict["first_name"] = imports[i][j].lower()
+							case "last name": csv_dict["second_name"] = imports[i][j].lower()
+							case "primary phone": csv_dict["phone"] = imports[i][j].lower()
+							case "e-mail address": csv_dict["email"] = imports[i][j].lower()
+							case "home address": csv_dict["house_name_or_number"] = imports[i][j].lower()
+							case "home street": csv_dict["address_line_1"] = imports[i][j].lower()
+							case "home street 2": csv_dict["address_line_2"] = imports[i][j].lower()
+							case "home postal code": csv_dict["postcode"] = imports[i][j].lower()
+							case _: pass
+						   
 				new_contact = Contact()
 				new_contact.create_contact_from_json(csv_dict, [])
 				self.__contact_list.append_contact(new_contact)
-					       
+						   
 			print("Contacts Imported.")
 						
 		except:
